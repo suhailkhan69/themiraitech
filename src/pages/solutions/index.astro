@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const solutions = [
+  {
+    href: '/solutions/real-estate',
+    industry: 'Real Estate',
+    headline: 'Fill your calendar without an SDR team',
+    description: 'AI voice agents that qualify buyers, book showings, and follow up with leads — 24/7.',
+    stat: '342% more qualified leads',
+    color: 'from-blue-500/10 to-indigo-500/10',
+    border: 'hover:border-blue-500/30',
+  },
+  {
+    href: '/solutions/legal',
+    industry: 'Legal Firms',
+    headline: 'Intake more clients without more staff',
+    description: 'AI intake agents and document automation that cut intake time by 82%.',
+    stat: '82% faster client intake',
+    color: 'from-violet-500/10 to-purple-500/10',
+    border: 'hover:border-violet-500/30',
+  },
+  {
+    href: '/solutions/dental-medical',
+    industry: 'Dental & Medical',
+    headline: 'Never have an empty chair again',
+    description: 'Automated recall, booking, and cancellation-fill systems that keep your schedule full.',
+    stat: '+$180k annual revenue',
+    color: 'from-emerald-500/10 to-teal-500/10',
+    border: 'hover:border-emerald-500/30',
+  },
+  {
+    href: '/solutions/ecommerce',
+    industry: 'E-commerce',
+    headline: 'AI support + automation that scales with sales',
+    description: 'Deflect 80% of support tickets and automate order workflows — without adding headcount.',
+    stat: '80% ticket deflection',
+    color: 'from-orange-500/10 to-amber-500/10',
+    border: 'hover:border-orange-500/30',
+  },
+  {
+    href: '/solutions/home-services',
+    industry: 'Home Services',
+    headline: 'Win more jobs while you\'re on the job',
+    description: 'AI that answers calls, books estimates, and follows up — so you stop losing work to voicemail.',
+    stat: '40% more booked jobs',
+    color: 'from-cyan-500/10 to-sky-500/10',
+    border: 'hover:border-cyan-500/30',
+  },
+];
+---
+
+<BaseLayout
+  title="AI Solutions by Industry | Mirai"
+  description="Industry-specific AI automation for real estate, legal, dental, e-commerce, and home services businesses."
+>
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div class="section-label mb-4">Solutions</div>
+      <h1 class="font-heading text-5xl sm:text-6xl font-bold text-text-primary mb-6">
+        Built for your industry
+      </h1>
+      <p class="text-text-secondary text-xl max-w-2xl mx-auto">
+        Generic AI tools don't understand your workflows. We do. Our systems are tailored to the specific challenges of your industry.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {solutions.map(s => (
+          <a
+            href={s.href}
+            class={`group rounded-xl border border-border bg-gradient-to-br ${s.color} bg-surface p-8 transition-all duration-300 ${s.border}`}
+          >
+            <p class="text-text-muted text-xs font-semibold uppercase tracking-wider mb-4">{s.industry}</p>
+            <h2 class="font-heading text-xl font-semibold text-text-primary mb-3 group-hover:text-accent-indigo transition-colors">
+              {s.headline}
+            </h2>
+            <p class="text-text-secondary text-sm leading-relaxed mb-6">{s.description}</p>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-sm font-semibold text-accent-cyan">{s.stat}</span>
+              <svg class="w-4 h-4 text-text-muted group-hover:text-accent-indigo group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

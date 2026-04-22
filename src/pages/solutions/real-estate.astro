@@ -1,0 +1,45 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+---
+
+<SolutionLayout
+  industry="Real Estate"
+  tagline="Fill your calendar without an SDR team."
+  description="We build AI voice agents and lead automation systems specifically for real estate brokerages — qualifying buyers, booking showings, and nurturing leads 24/7 without adding headcount."
+  seoDescription="AI automation for real estate brokerages. Voice agents that qualify buyers, book showings, and nurture leads automatically. See 342% more qualified leads."
+  painPoints={[
+    "Missing calls from motivated buyers and sellers while you're on a showing",
+    "Spending hours manually following up with cold leads that go nowhere",
+    "Paying $5k+/month for appointment setters who have inconsistent quality",
+    "Losing listings to competitors who respond faster",
+    "Drowning in admin — data entry, CRM updates, email follow-ups",
+    "No way to work inbound leads at 9pm when motivated buyers are searching",
+  ]}
+  useCases={[
+    {
+      title: 'AI Inbound Call Agent',
+      description: 'Qualifies every inbound lead with a natural conversation — budget, timeline, location preferences, pre-approval status — and books a call with your agent directly into your calendar.',
+      stat: 'Handles 200+ calls/month without human help',
+    },
+    {
+      title: 'Showing Booking Automation',
+      description: 'Connects to your MLS listings and calendar. Qualified buyers can book, reschedule, or cancel showings automatically. Sends confirmation texts and reminders to reduce no-shows.',
+      stat: '60% fewer no-shows',
+    },
+    {
+      title: 'Lead Nurture Sequences',
+      description: 'Automated email + SMS sequences for leads who aren\'t ready to transact yet. AI personalizes messages based on property searches, price range, and previous interactions.',
+      stat: 'Average 4.2× ROI on long-term nurture',
+    },
+    {
+      title: 'CRM Automation',
+      description: 'Every call, showing, and interaction automatically logged to your CRM (Follow Up Boss, KVCore, HubSpot). Never lose a lead to a missed update again.',
+      stat: '100% lead capture rate',
+    },
+  ]}
+  caseStudyRef={{
+    title: 'Vertex Realty: 342% more qualified leads, $96k saved annually',
+    result: '342% more qualified leads',
+    href: '/case-studies/vertex-realty',
+  }}
+/>

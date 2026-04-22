@@ -1,0 +1,52 @@
+---
+interface Props {
+  headline?: string;
+  subhead?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  headline = "Ready to automate the boring parts?",
+  subhead = "Book a free 30-minute strategy call. We'll map out the highest-leverage AI opportunity for your business — no pitch, no pressure.",
+  primaryLabel = "Book a free strategy call",
+  primaryHref = "/contact",
+  secondaryLabel = "See case studies",
+  secondaryHref = "/case-studies",
+} = Astro.props;
+---
+
+<section class="py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-2xl bg-surface border border-border overflow-hidden">
+      <!-- Background gradient -->
+      <div class="absolute inset-0 bg-gradient-hero opacity-60 pointer-events-none"></div>
+      <div class="absolute top-0 right-0 w-[500px] h-[300px] bg-accent-violet/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+
+      <div class="relative px-8 py-20 sm:px-16 text-center">
+        <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-primary mb-6 max-w-3xl mx-auto leading-tight">
+          {headline}
+        </h2>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto mb-10">
+          {subhead}
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={primaryHref} class="btn-primary text-base px-8 py-4">
+            {primaryLabel}
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href={secondaryHref} class="btn-secondary text-base px-8 py-4">
+            {secondaryLabel}
+          </a>
+        </div>
+        <p class="text-text-muted text-sm mt-6">
+          Response within 24 hours. No commitment required.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

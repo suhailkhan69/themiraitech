@@ -1,0 +1,40 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+---
+
+<SolutionLayout
+  industry="Home Services"
+  tagline="Win more jobs while you're on the job."
+  description="AI voice agents and booking automation for HVAC, plumbing, electrical, landscaping, and cleaning companies — so you stop losing work to voicemail."
+  seoDescription="AI automation for home services companies. AI voice agents that answer calls, book estimates, and follow up leads so you win 40% more jobs."
+  painPoints={[
+    "Missing calls from homeowners with urgent problems while your team is on a job",
+    "Competitors who answer faster winning the work you should be getting",
+    "Quoting and follow-up falling through the cracks with a field-heavy team",
+    "Seasonal demand spikes overwhelming your booking capacity",
+    "Manual scheduling creating routing inefficiencies and technician downtime",
+    "No systematic review collection process despite satisfied customers",
+  ]}
+  useCases={[
+    {
+      title: 'AI Inbound Call Agent',
+      description: 'Answers every call immediately — collects the job details, qualifies the request, checks your calendar, and books an estimate or service appointment on the spot.',
+      stat: '40% more booked jobs',
+    },
+    {
+      title: 'Quote Follow-Up Automation',
+      description: 'When a quote goes out, an automated sequence follows up at 24hrs, 3 days, and 7 days via text and email. Homeowners can accept, decline, or ask questions by replying.',
+      stat: '35% quote-to-job conversion lift',
+    },
+    {
+      title: 'Job Scheduling & Dispatch',
+      description: 'AI connects to your scheduling software and optimizes technician routing based on location and job type. New bookings are auto-routed to the right tech with the right skills.',
+      stat: '25% more jobs per tech per day',
+    },
+    {
+      title: 'Review Generation System',
+      description: 'After every completed job, an automated text asks for a Google review. Happy customers are prompted to share; unhappy customers are routed to your team first.',
+      stat: '5× more Google reviews collected',
+    },
+  ]}
+/>

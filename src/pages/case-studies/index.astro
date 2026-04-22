@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Badge from '@/components/ui/Badge.astro';
+import { getCollection } from 'astro:content';
+
+const studies = (await getCollection('case-studies'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Case Studies | Mirai"
+  description="Real results from real businesses. See how Mirai deploys AI voice agents, workflow automation, and custom AI systems."
+>
+  <!-- Hero -->
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div class="section-label mb-4">Case Studies</div>
+      <h1 class="font-heading text-5xl sm:text-6xl font-bold text-text-primary mb-6">
+        Don't take our word for it.
+      </h1>
+      <p class="text-text-secondary text-xl max-w-2xl mx-auto">
+        Real results from real businesses. Numbers are verifiable. Names are real (where clients have given permission).
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Summary stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        {[
+          { value: '50+', label: 'Projects completed' },
+          { value: '$2.4M', label: 'Revenue generated for clients' },
+          { value: '8wks', label: 'Average deployment time' },
+          { value: '4.9/5', label: 'Client satisfaction score' },
+        ].map(stat => (
+          <div class="text-center rounded-xl border border-border bg-surface p-6">
+            <div class="stat-number text-3xl mb-1">{stat.value}</div>
+            <div class="text-text-muted text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Case study cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {studies.map(study => (
+          <a
+            href={`/case-studies/${study.id}`}
+            class="group rounded-xl border border-border bg-surface overflow-hidden hover:border-accent-indigo/30 transition-all"
+          >
+            <!-- Color band -->
+            <div class="h-1 bg-gradient-primary"></div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-4">
+                <Badge variant="default">{study.data.industry}</Badge>
+              </div>
+
+              <h2 class="font-heading text-lg font-semibold text-text-primary mb-3 group-hover:text-accent-indigo transition-colors leading-snug">
+                {study.data.client}
+              </h2>
+              <p class="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-2">
+                {study.data.challenge}
+              </p>
+
+              <!-- Primary metric -->
+              <div class="rounded-xl border border-accent-indigo/20 bg-accent-indigo/5 px-4 py-3 mb-4">
+                <p class="font-mono text-2xl font-bold text-accent-indigo">{study.data.metrics[0]?.value}</p>
+                <p class="text-text-muted text-xs mt-0.5">{study.data.metrics[0]?.label}</p>
+              </div>
+
+              <!-- Secondary metrics -->
+              <div class="grid grid-cols-2 gap-3">
+                {study.data.metrics.slice(1, 3).map(m => (
+                  <div>
+                    <p class="font-mono text-base font-bold text-text-primary">{m.value}</p>
+                    <p class="text-text-muted text-xs">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

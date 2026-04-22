@@ -1,0 +1,45 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+---
+
+<SolutionLayout
+  industry="Legal Firms"
+  tagline="Intake more clients without hiring more staff."
+  description="We build AI intake agents, document automation, and client communication systems for law firms — reducing intake time by 82% and capturing more qualified consultations."
+  seoDescription="AI automation for law firms and legal practices. AI intake agents, document automation, and client communication systems that reduce intake time by 82%."
+  painPoints={[
+    "Intake calls taking 45+ minutes per potential client, most of whom don't convert",
+    "Paralegals spending hours on repetitive document drafting",
+    "Missed calls from potential clients who call competitors instead",
+    "Client communication bottlenecks delaying case progress",
+    "Inconsistent intake qualification — taking unqualified cases",
+    "Manual billing tracking and time entry errors",
+  ]}
+  useCases={[
+    {
+      title: 'AI Intake Agent',
+      description: 'Handles initial intake calls — collects case details, assesses case viability based on your practice areas, and books consultations only for qualified prospects. Captures information in your case management software automatically.',
+      stat: '45-min intake → 8 minutes',
+    },
+    {
+      title: 'Document Automation',
+      description: 'Auto-generates client letters, retainer agreements, intake forms, and status updates from templates. Lawyers review and sign — they don\'t draft from scratch.',
+      stat: '3hrs/day saved per paralegal',
+    },
+    {
+      title: 'Client Communication Hub',
+      description: 'AI handles routine client inquiries ("What\'s the status of my case?"), sends automated updates at case milestones, and escalates complex questions to attorneys.',
+      stat: '70% fewer status-inquiry calls',
+    },
+    {
+      title: 'After-Hours Coverage',
+      description: 'An AI agent that answers calls at night and on weekends — qualifies the matter, gathers details, and schedules a consultation. No more missed emergency inquiries.',
+      stat: '24/7 availability',
+    },
+  ]}
+  caseStudyRef={{
+    title: 'Acme Law: Intake time reduced 82%, 40% more consultations booked',
+    result: '82% faster intake',
+    href: '/case-studies/acme-law',
+  }}
+/>

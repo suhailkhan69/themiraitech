@@ -1,0 +1,141 @@
+---
+---
+
+<section class="py-24 bg-surface border-y border-border">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="section-label mb-4">Proof it works</div>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-primary mb-4">
+        Real results. Real businesses.
+      </h2>
+      <p class="text-text-secondary text-lg max-w-xl mx-auto">
+        We don't sell demos. We build systems that move the needle on metrics that matter.
+      </p>
+    </div>
+
+    <!-- Featured case study -->
+    <div class="rounded-2xl border border-border bg-background overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Content side -->
+        <div class="p-10 lg:p-12 flex flex-col justify-between">
+          <div>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border border-accent-indigo/30 bg-accent-indigo/10 text-accent-indigo mb-6">
+              Real Estate
+            </span>
+            <h3 class="font-heading text-3xl font-bold text-text-primary mb-4 leading-snug">
+              How Vertex Realty filled their calendar without hiring a single SDR
+            </h3>
+            <p class="text-text-secondary leading-relaxed mb-8">
+              Vertex Realty was spending $8k/month on a team of three appointment setters. We replaced that entire function with an AI voice agent + automation stack that qualifies leads, books showings, and sends follow-up nurture sequences — all without human intervention.
+            </p>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-3 gap-6 mb-10">
+              <div>
+                <div class="stat-number text-3xl text-accent-indigo">342%</div>
+                <div class="text-text-muted text-xs mt-1">More qualified leads/month</div>
+              </div>
+              <div>
+                <div class="stat-number text-3xl text-accent-cyan">$96k</div>
+                <div class="text-text-muted text-xs mt-1">Annual cost savings</div>
+              </div>
+              <div>
+                <div class="stat-number text-3xl text-accent-violet">6wks</div>
+                <div class="text-text-muted text-xs mt-1">Time to full deployment</div>
+              </div>
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="border-l-2 border-accent-indigo/50 pl-4 mb-8">
+              <p class="text-text-secondary text-sm italic leading-relaxed">
+                "Within 30 days of launch, our AI agent was outperforming our best human setter. It never takes a sick day, never has an off week, and has perfect recall of every property we list."
+              </p>
+              <cite class="text-text-muted text-xs mt-2 block not-italic">
+                — Marcus T., Principal Broker, Vertex Realty
+              </cite>
+            </blockquote>
+          </div>
+
+          <a href="/case-studies/vertex-realty" class="btn-primary self-start">
+            Read full case study
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Visual side -->
+        <div class="bg-surface-2 p-10 lg:p-12 flex items-center justify-center border-l border-border">
+          <div class="w-full max-w-sm space-y-4">
+            <!-- Mock dashboard card -->
+            <div class="rounded-xl border border-border bg-background p-5">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-text-muted text-xs">Voice Agent Performance</span>
+                <span class="text-emerald-400 text-xs font-mono">● Live</span>
+              </div>
+              <div class="space-y-3">
+                {[
+                  { label: 'Calls handled today', value: '47', change: '+12%' },
+                  { label: 'Appointments booked', value: '18', change: '+34%' },
+                  { label: 'Avg call duration', value: '3m 42s', change: '' },
+                  { label: 'Qualification rate', value: '84%', change: '+8%' },
+                ].map(row => (
+                  <div class="flex items-center justify-between py-2 border-b border-border last:border-0">
+                    <span class="text-text-muted text-xs">{row.label}</span>
+                    <div class="flex items-center gap-2">
+                      <span class="font-mono text-text-primary text-sm">{row.value}</span>
+                      {row.change && (
+                        <span class="text-emerald-400 text-xs font-mono">{row.change}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Second card -->
+            <div class="rounded-xl border border-border bg-background p-5">
+              <div class="text-text-muted text-xs mb-3">Weekly lead volume</div>
+              <div class="flex items-end gap-1 h-12">
+                {[40, 55, 45, 70, 85, 75, 95].map(h => (
+                  <div
+                    class="flex-1 bg-accent-indigo/20 rounded-sm hover:bg-accent-indigo/40 transition-colors"
+                    style={`height: ${h}%`}
+                  ></div>
+                ))}
+              </div>
+              <div class="flex justify-between mt-2">
+                <span class="text-text-muted text-xs">Mon</span>
+                <span class="text-text-muted text-xs">Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini case study grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      {[
+        { industry: 'Legal', headline: 'Acme Law reduced intake time from 45 min to 8 min', stat: '82% faster intake' },
+        { industry: 'Dental', headline: 'ClearSmile filled 94% of cancellation slots automatically', stat: '+$180k revenue' },
+        { industry: 'E-commerce', headline: 'ShopEdge\'s AI agent resolves 80% of support tickets', stat: '4 FTEs reallocated' },
+      ].map(cs => (
+        <div class="rounded-xl border border-border bg-surface p-6 hover:border-accent-indigo/30 transition-all">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border border-border text-text-muted mb-4">
+            {cs.industry}
+          </span>
+          <p class="text-text-primary text-sm font-medium mb-4 leading-snug">{cs.headline}</p>
+          <span class="font-mono text-accent-cyan text-sm font-semibold">{cs.stat}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/case-studies" class="btn-secondary">
+        Browse all case studies
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+---
+
+<SolutionLayout
+  industry="E-commerce"
+  tagline="AI support and automation that scales with your sales."
+  description="Deflect 80% of support tickets, automate order workflows, and recover abandoned carts — without scaling your team proportionally."
+  seoDescription="AI automation for e-commerce brands. Deflect 80% of support tickets, automate order workflows, and recover abandoned carts with custom AI systems."
+  painPoints={[
+    "Support volume scaling linearly with revenue — hiring 1 new agent per $500k in sales",
+    "Same questions answered manually hundreds of times per day ('Where is my order?')",
+    "Abandoned carts with no automated recovery beyond a single email",
+    "Manual order processing and inventory update workflows across multiple tools",
+    "No personalized product recommendation system",
+    "Returns and refunds processed manually, slowing turnaround",
+  ]}
+  useCases={[
+    {
+      title: 'AI Customer Support Chatbot',
+      description: 'Trained on your product catalog, policies, and FAQs. Handles order tracking, return initiation, product questions, and size guidance — resolving 80% of tickets without a human.',
+      stat: '80% ticket deflection rate',
+    },
+    {
+      title: 'Abandoned Cart Recovery',
+      description: 'Multi-channel recovery sequences (email + SMS) powered by AI personalization — different messaging for high-intent vs. price-sensitive abandoners, with smart discount logic.',
+      stat: 'Average 18% recovery rate',
+    },
+    {
+      title: 'Order & Inventory Automation',
+      description: 'Connects Shopify/WooCommerce to your 3PL, supplier, and accounting tools. Auto-updates inventory, triggers reorder alerts, and syncs order status across systems.',
+      stat: '6hrs/day of manual work eliminated',
+    },
+    {
+      title: 'Post-Purchase Sequences',
+      description: 'Automated review requests, upsell recommendations, and loyalty program communications timed perfectly to the customer lifecycle.',
+      stat: '+22% repeat purchase rate',
+    },
+  ]}
+/>

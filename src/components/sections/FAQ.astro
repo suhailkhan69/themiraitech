@@ -1,0 +1,116 @@
+---
+const faqs = [
+  {
+    question: 'How much does it cost?',
+    answer: 'Projects typically start at $3,000 for a single automation or AI chatbot, and $8,000–$20,000 for a full AI voice agent system with workflow integrations. We offer both one-time build fees and monthly retainers for ongoing optimization. Every engagement starts with a free strategy call where we scope the project and give you a fixed-price quote.',
+  },
+  {
+    question: 'How long does it take to deploy?',
+    answer: 'Most projects go live in 6–8 weeks. Simple automations can be done in 2–3 weeks. Complex multi-system integrations (voice agent + CRM + email workflows) take 8–10 weeks. We give you a realistic timeline upfront and hit it — we don\'t do "it\'ll be ready when it\'s ready."',
+  },
+  {
+    question: 'Is my business data secure?',
+    answer: 'Yes. We follow strict data handling practices: all data is encrypted in transit and at rest, we use SOC 2-compliant infrastructure, we never train AI models on your proprietary data without explicit permission, and we sign NDAs before any project begins. For regulated industries (legal, medical), we build specifically for compliance requirements.',
+  },
+  {
+    question: 'Will this integrate with my existing tools?',
+    answer: 'Almost certainly. We\'ve built integrations with 80+ tools: Salesforce, HubSpot, Clio, Dentrix, Shopify, GoHighLevel, Zapier, Slack, Google Workspace, Microsoft 365, and dozens more. If you use a tool with an API, we can connect to it. We handle all integration work — you don\'t need a technical team.',
+  },
+  {
+    question: 'What support do I get after launch?',
+    answer: 'All projects include 30 days of post-launch support at no extra cost — we monitor performance, fix any issues, and tune the system. After that, you can choose a monthly optimization retainer ($500–$2,000/month depending on system complexity) or a pay-as-you-go support package. We don\'t disappear after delivery.',
+  },
+  {
+    question: 'How do I know if AI automation is right for my business?',
+    answer: 'Good candidates for AI automation have: repetitive high-volume tasks (answering the same 20 questions daily, manual data entry, appointment scheduling), a clear bottleneck that costs you time or money, and a desire to scale without proportionally scaling headcount. Book a strategy call — we\'ll be honest if automation won\'t move the needle for you.',
+  },
+];
+---
+
+<section class="py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="section-label mb-4">FAQ</div>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-text-primary mb-4">
+        Common questions
+      </h2>
+      <p class="text-text-secondary text-lg">
+        Everything you need to know before booking a call.
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-3" id="faq-accordion">
+      {faqs.map((faq, i) => (
+        <div class="rounded-xl border border-border bg-surface overflow-hidden" data-faq-item>
+          <button
+            class="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-surface-2 transition-colors"
+            data-faq-toggle
+            aria-expanded="false"
+          >
+            <span class="font-heading text-base font-semibold text-text-primary pr-4">
+              {faq.question}
+            </span>
+            <svg
+              class="w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-200"
+              data-faq-icon
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+            </svg>
+          </button>
+          <div class="hidden px-6 pb-6" data-faq-content>
+            <p class="text-text-secondary text-sm leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer,
+        },
+      })),
+    })} />
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll('[data-faq-item]');
+
+  items.forEach(item => {
+    const toggle = item.querySelector('[data-faq-toggle]');
+    const content = item.querySelector('[data-faq-content]');
+    const icon = item.querySelector('[data-faq-icon]');
+
+    toggle?.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+      // Close all others
+      items.forEach(other => {
+        if (other !== item) {
+          other.querySelector('[data-faq-toggle]')?.setAttribute('aria-expanded', 'false');
+          other.querySelector('[data-faq-content]')?.classList.add('hidden');
+          const otherIcon = other.querySelector('[data-faq-icon]');
+          if (otherIcon) (otherIcon as HTMLElement).style.transform = '';
+        }
+      });
+
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      content?.classList.toggle('hidden', isOpen);
+      if (icon) (icon as HTMLElement).style.transform = isOpen ? '' : 'rotate(45deg)';
+    });
+  });
+</script>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const services = [
+  {
+    id: 'voice-agents',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>`,
+    title: 'AI Voice Agents',
+    tagline: 'Never miss a call. Never hire another receptionist.',
+    problem: 'Missed calls = missed revenue. The average SMB misses 35% of inbound calls during business hours — and nearly all calls outside them. Every missed call is a potential client handed to a competitor.',
+    description: 'We build AI voice agents that handle inbound and outbound calls with human-like conversation quality. They qualify leads, book appointments, answer FAQs, take messages, and escalate to humans when genuinely needed.',
+    features: [
+      '24/7 inbound call handling',
+      'Lead qualification with custom criteria',
+      'Calendar booking integration (Cal.com, Calendly, GoHighLevel)',
+      'Natural, multi-turn conversation — not IVR menus',
+      'Escalation routing to human agents',
+      'Full call transcripts and CRM logging',
+      'Outbound campaign capability',
+      'Custom voice and persona matching your brand',
+    ],
+    idealFor: ['Law firms & legal practices', 'Real estate brokerages', 'Dental & medical clinics', 'Home services companies', 'Any business with high call volume'],
+    pricing: 'Starts at $8,000 setup + $500/month',
+    stat: { value: '3×', label: 'more calls handled vs. human staff' },
+  },
+  {
+    id: 'workflow-automation',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>`,
+    title: 'Workflow Automation',
+    tagline: 'Stop doing work a script can do.',
+    problem: 'Your team spends hours every week on manual, repetitive tasks: data entry, copy-paste between tools, sending follow-up emails, updating spreadsheets. This is expensive, error-prone, and demoralizing.',
+    description: 'We design and build end-to-end automation workflows using n8n, Make (Integromat), and custom APIs. From lead capture to invoice generation, we connect your tools into a single intelligent system.',
+    features: [
+      'CRM automation (HubSpot, Salesforce, GoHighLevel)',
+      'Email & calendar workflow automation',
+      'Lead routing and follow-up sequences',
+      'Invoice and document generation',
+      'Reporting and dashboard automation',
+      'Cross-platform data sync',
+      'Custom webhook integrations',
+      '80+ native integrations',
+    ],
+    idealFor: ['E-commerce brands', 'Marketing agencies', 'SaaS companies', 'Financial services', 'Any team drowning in repetitive admin'],
+    pricing: 'Starts at $3,000 for a single workflow system',
+    stat: { value: '15hrs', label: 'average hours saved per week' },
+  },
+  {
+    id: 'chatbots',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>`,
+    title: 'AI Chatbots & RAG Systems',
+    tagline: 'An expert on your business, available 24/7.',
+    problem: 'Your support team answers the same 30 questions every day. Your website visitors leave because they couldn\'t find what they needed. Your internal team wastes time searching documentation.',
+    description: 'We build custom AI chatbots powered by Retrieval-Augmented Generation (RAG) — trained on your documents, products, policies, and knowledge base. Deploy on your website, WhatsApp, Slack, or internal tools.',
+    features: [
+      'Document ingestion (PDFs, websites, Google Docs, Notion)',
+      'Accurate, citation-backed answers',
+      'Website embed widget',
+      'WhatsApp Business integration',
+      'Slack / Teams internal deployment',
+      'Human escalation triggers',
+      'Analytics and conversation history',
+      'Continuous learning from feedback',
+    ],
+    idealFor: ['E-commerce brands', 'SaaS products', 'Legal and financial firms', 'Healthcare providers', 'Any business with a large knowledge base'],
+    pricing: 'Starts at $4,000 setup + $300/month',
+    stat: { value: '80%', label: 'support tickets deflected automatically' },
+  },
+  {
+    id: 'lead-generation',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>`,
+    title: 'AI Lead Generation',
+    tagline: 'A pipeline that fills itself.',
+    problem: 'Sales outreach at scale is expensive and inconsistent. Most businesses either can\'t afford an SDR team or struggle to keep up with follow-up. Leads go cold. Opportunities are missed.',
+    description: 'We build AI-powered outreach and lead nurturing systems that identify, contact, qualify, and warm prospects — delivering ready-to-close leads to your inbox without manual effort.',
+    features: [
+      'ICP-based prospect research and list building',
+      'Personalized AI-written outreach at scale',
+      'Multi-channel sequences (email, LinkedIn, SMS)',
+      'AI reply classification and routing',
+      'CRM integration and lead scoring',
+      'A/B testing and performance analytics',
+      'Warm lead handoff triggers',
+      'Compliance-first sending (CAN-SPAM, GDPR)',
+    ],
+    idealFor: ['B2B service businesses', 'Real estate agencies', 'Staffing and recruiting firms', 'Professional services', 'Any business dependent on outbound sales'],
+    pricing: 'Starts at $5,000 setup + $800/month',
+    stat: { value: '342%', label: 'more qualified leads per month' },
+  },
+];
+---
+
+<BaseLayout
+  title="AI Automation Services | Mirai"
+  description="Explore Mirai's AI services: voice agents, workflow automation, custom chatbots, and AI lead generation systems for SMBs."
+>
+  <!-- Hero -->
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <div class="section-label mb-4">Services</div>
+      <h1 class="font-heading text-5xl sm:text-6xl font-bold text-text-primary mb-6">
+        Build the AI stack<br />your business needs
+      </h1>
+      <p class="text-text-secondary text-xl max-w-2xl mx-auto">
+        Four core systems that eliminate operational bottlenecks, reduce costs, and scale your capacity without scaling your headcount.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service sections -->
+  {services.map((service, i) => (
+    <section id={service.id} class={`py-20 ${i % 2 === 1 ? 'bg-surface border-y border-border' : ''}`}>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${i % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+          <!-- Content -->
+          <div class={i % 2 === 1 ? 'lg:col-start-2' : ''}>
+            <div class="w-16 h-16 rounded-xl border border-border bg-surface-2 flex items-center justify-center text-accent-indigo mb-6">
+              <Fragment set:html={service.icon} />
+            </div>
+            <h2 class="font-heading text-4xl font-bold text-text-primary mb-2">
+              {service.title}
+            </h2>
+            <p class="text-accent-cyan text-lg mb-6">{service.tagline}</p>
+
+            <div class="rounded-xl border border-border bg-surface-2 p-5 mb-6">
+              <p class="text-text-muted text-xs font-semibold uppercase tracking-wider mb-2">The Problem</p>
+              <p class="text-text-secondary text-sm leading-relaxed">{service.problem}</p>
+            </div>
+
+            <p class="text-text-secondary leading-relaxed mb-8">{service.description}</p>
+
+            <!-- Stat -->
+            <div class="flex items-center gap-4 mb-8">
+              <div class="rounded-xl border border-accent-indigo/30 bg-accent-indigo/10 px-5 py-3">
+                <div class="font-mono text-3xl font-bold text-accent-indigo">{service.stat.value}</div>
+                <div class="text-text-muted text-xs mt-0.5">{service.stat.label}</div>
+              </div>
+            </div>
+
+            <a href="/contact" class="btn-primary">
+              Get a quote for {service.title}
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Features + Info -->
+          <div class={i % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
+            <div class="rounded-xl border border-border bg-surface p-8 mb-6">
+              <h3 class="font-heading text-lg font-semibold text-text-primary mb-6">What's included</h3>
+              <ul class="space-y-3">
+                {service.features.map(f => (
+                  <li class="flex items-start gap-3 text-sm text-text-secondary">
+                    <svg class="w-4 h-4 text-accent-indigo flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="rounded-xl border border-border bg-surface p-5">
+                <h4 class="text-text-muted text-xs font-semibold uppercase tracking-wider mb-3">Ideal for</h4>
+                <ul class="space-y-2">
+                  {service.idealFor.map(item => (
+                    <li class="text-text-secondary text-sm">{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="rounded-xl border border-accent-indigo/20 bg-accent-indigo/5 p-5 flex flex-col justify-between">
+                <h4 class="text-text-muted text-xs font-semibold uppercase tracking-wider mb-3">Pricing</h4>
+                <p class="text-text-primary text-sm font-medium">{service.pricing}</p>
+                <a href="/contact" class="text-accent-indigo text-xs hover:underline mt-4 block">
+                  Get exact quote →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CTA
+    headline="Not sure which service fits?"
+    subhead="Book a 30-minute call and we'll tell you exactly which automation will have the highest ROI for your business — no fluff, no upsell."
+  />
+</BaseLayout>

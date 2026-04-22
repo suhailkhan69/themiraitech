@@ -1,0 +1,124 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+interface Props {
+  industry: string;
+  tagline: string;
+  description: string;
+  painPoints: string[];
+  useCases: { title: string; description: string; stat?: string }[];
+  caseStudyRef?: { title: string; result: string; href: string };
+  title?: string;
+  seoDescription?: string;
+}
+
+const {
+  industry,
+  tagline,
+  description,
+  painPoints,
+  useCases,
+  caseStudyRef,
+  title = `AI Automation for ${industry} | Mirai`,
+  seoDescription,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={seoDescription || description}>
+  <!-- Hero -->
+  <section class="relative py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="section-label mb-4">{industry}</div>
+        <h1 class="font-heading text-5xl sm:text-6xl font-bold text-text-primary mb-6 leading-tight">
+          {tagline}
+        </h1>
+        <p class="text-text-secondary text-xl leading-relaxed mb-10">
+          {description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contact" class="btn-primary text-base px-8 py-4">
+            Book a strategy call
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          {caseStudyRef && (
+            <a href={caseStudyRef.href} class="btn-secondary text-base px-8 py-4">
+              See case study
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="py-20 bg-surface border-y border-border">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-3xl font-bold text-text-primary mb-12 text-center">
+        The problems we solve for {industry.toLowerCase()}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {painPoints.map(point => (
+          <div class="rounded-xl border border-border bg-background p-6">
+            <div class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+              <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <p class="text-text-secondary text-sm leading-relaxed">{point}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="section-label mb-4">What we build</div>
+        <h2 class="font-heading text-4xl font-bold text-text-primary">
+          AI systems built for {industry.toLowerCase()}
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {useCases.map(uc => (
+          <div class="rounded-xl border border-border bg-surface p-8 card-hover">
+            <h3 class="font-heading text-xl font-semibold text-text-primary mb-3">{uc.title}</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">{uc.description}</p>
+            {uc.stat && (
+              <span class="font-mono text-sm font-semibold text-accent-cyan">{uc.stat}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Case study reference -->
+  {caseStudyRef && (
+    <section class="py-12 bg-surface border-y border-border">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 rounded-xl border border-border bg-background p-8">
+          <div>
+            <p class="text-text-muted text-xs uppercase tracking-wider mb-2">Case Study</p>
+            <h3 class="font-heading text-xl font-semibold text-text-primary mb-2">{caseStudyRef.title}</h3>
+            <p class="font-mono text-2xl font-bold text-accent-indigo">{caseStudyRef.result}</p>
+          </div>
+          <a href={caseStudyRef.href} class="btn-primary flex-shrink-0">
+            Read full story →
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTA
+    headline={`Ready to automate your ${industry.toLowerCase()} business?`}
+    subhead="Book a free 30-minute call and we'll show you exactly how AI can reduce costs and grow revenue for your specific situation."
+  />
+</BaseLayout>

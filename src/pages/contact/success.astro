@@ -1,0 +1,54 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Message Sent | Mirai"
+  description="Thanks for reaching out. We'll be in touch within 24 hours."
+  noindex={true}
+>
+  <section class="min-h-[80vh] flex items-center">
+    <div class="mx-auto max-w-2xl px-4 text-center">
+      <!-- Success icon -->
+      <div class="w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="font-heading text-4xl font-bold text-text-primary mb-4">
+        Message received.
+      </h1>
+      <p class="text-text-secondary text-xl mb-8 leading-relaxed">
+        Thanks for reaching out. We'll review your message and get back to you within 24 hours with honest thoughts on how we can help.
+      </p>
+
+      <!-- What's next -->
+      <div class="rounded-xl border border-border bg-surface p-8 mb-10 text-left">
+        <h2 class="font-heading text-lg font-semibold text-text-primary mb-6 text-center">What happens next</h2>
+        <ol class="space-y-4">
+          {[
+            { step: '01', text: 'We review your message and research your business type — usually same day.' },
+            { step: '02', text: 'You\'ll get a personal reply from our team (not an automated bot) within 24 hours.' },
+            { step: '03', text: 'If it looks like a strong fit, we\'ll suggest scheduling a 30-minute strategy call.' },
+            { step: '04', text: 'On the call, we map out your best automation opportunity and give you a ballpark estimate.' },
+          ].map(item => (
+            <li class="flex items-start gap-4">
+              <span class="font-mono text-accent-indigo font-semibold text-sm flex-shrink-0 pt-0.5">{item.step}</span>
+              <p class="text-text-secondary text-sm leading-relaxed">{item.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn-primary">
+          Back to home
+        </a>
+        <a href="/case-studies" class="btn-secondary">
+          Browse case studies
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

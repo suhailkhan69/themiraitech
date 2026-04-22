@@ -1,0 +1,45 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+---
+
+<SolutionLayout
+  industry="Dental & Medical"
+  tagline="Never have an empty chair again."
+  description="AI recall systems, automated booking, and patient communication tools that keep your schedule full — without adding front desk staff."
+  seoDescription="AI automation for dental clinics and medical practices. Automated recall, cancellation filling, and patient communication that generates $180k+ in additional revenue."
+  painPoints={[
+    "Cancellations leaving chairs empty with no time to fill them manually",
+    "Front desk overwhelmed with appointment calls, unable to focus on patients in-office",
+    "Patients overdue for recall with no systematic follow-up process",
+    "Manual insurance verification eating up staff time",
+    "After-hours calls going to voicemail and losing patients to other practices",
+    "No-shows with no automated reminder system to reduce them",
+  ]}
+  useCases={[
+    {
+      title: 'AI Cancellation Fill System',
+      description: 'When a cancellation occurs, the AI immediately contacts the waitlist — by text and call — and books the first available patient into the slot. Chairs stay full automatically.',
+      stat: '94% of cancellation slots filled',
+    },
+    {
+      title: 'Recall Campaign Automation',
+      description: 'AI identifies overdue patients and runs personalized recall campaigns via text, email, and voice — with HIPAA-compliant messaging and automatic booking.',
+      stat: '3× more recall appointments',
+    },
+    {
+      title: 'Appointment Reminder System',
+      description: 'Multi-channel automated reminders (SMS, voice, email) with two-way confirmation. Patients can confirm, reschedule, or cancel — all without calling the front desk.',
+      stat: '65% reduction in no-shows',
+    },
+    {
+      title: 'After-Hours Booking Agent',
+      description: 'Answers calls 24/7, handles new patient inquiries, books appointments, and collects insurance information — all before the patient arrives.',
+      stat: '40% more new patients captured',
+    },
+  ]}
+  caseStudyRef={{
+    title: 'ClearSmile Dental: $180k additional revenue from cancellation fills alone',
+    result: '+$180k annual revenue',
+    href: '/case-studies/clearsmile-dental',
+  }}
+/>
