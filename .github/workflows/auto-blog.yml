@@ -1,0 +1,60 @@
+name: Auto-generate daily blog posts
+
+on:
+  schedule:
+    # Runs at 8:00 AM UTC every day
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Number of posts to generate (3–5)'
+        required: false
+        default: '3'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-blogs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk --no-save
+
+      - name: Generate blog posts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POST_COUNT: ${{ github.event.inputs.count || '3' }}
+        run: node scripts/generate-blogs.mjs
+
+      - name: Check for new posts
+        id: check
+        run: |
+          git add src/content/blog/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "New posts staged:"
+            git diff --cached --name-only
+          fi
+
+      - name: Commit and push new posts
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "Mirai Blog Bot"
+          git config user.email "bot@themiraitech.com"
+          TODAY=$(date +'%Y-%m-%d')
+          COUNT=$(git diff --cached --name-only | wc -l)
+          git commit -m "blog: auto-publish ${COUNT} post(s) for ${TODAY}"
+          git push origin HEAD
