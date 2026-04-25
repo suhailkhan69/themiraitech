@@ -1,4 +1,5 @@
 ---
+import Logo from '@/components/ui/Logo';
 const year = new Date().getFullYear();
 
 const links = {
@@ -33,11 +34,8 @@ const links = {
     <div class="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12">
       <!-- Brand column -->
       <div class="col-span-2">
-        <a href="/" class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-            <span class="text-white font-bold text-sm font-heading">M</span>
-          </div>
-          <span class="font-heading font-semibold text-text-primary text-lg tracking-tight">mirai</span>
+        <a href="/" class="flex items-center mb-4">
+          <Logo size={26} showWordmark={true} client:load />
         </a>
         <p class="text-text-secondary text-sm leading-relaxed mb-6 max-w-xs">
           AI systems that ship. Built for teams that can't afford to experiment.

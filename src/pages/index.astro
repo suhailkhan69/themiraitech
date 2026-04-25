@@ -1,23 +1,23 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Hero from '@/components/sections/Hero.astro';
 import LogoStrip from '@/components/sections/LogoStrip.astro';
-import ServicesPreview from '@/components/sections/ServicesPreview.astro';
-import ProofSection from '@/components/sections/ProofSection.astro';
-import HowItWorks from '@/components/sections/HowItWorks.astro';
-import FAQ from '@/components/sections/FAQ.astro';
-import CTA from '@/components/sections/CTA.astro';
+import HeroAnimated from '@/components/sections/HeroAnimated';
+import ServicesAnimated from '@/components/sections/ServicesAnimated';
+import ProofAnimated from '@/components/sections/ProofAnimated';
+import HowItWorksAnimated from '@/components/sections/HowItWorksAnimated';
+import FAQAnimated from '@/components/sections/FAQAnimated';
+import CTAAnimated from '@/components/sections/CTAAnimated';
 ---
 
 <BaseLayout
   title="Mirai — AI Automation Agency"
   description="Mirai builds AI voice agents, workflow automation, and custom AI systems for Western SMBs. Deployed in 1 week. Book a free strategy call."
 >
-  <Hero />
+  <HeroAnimated client:load />
   <LogoStrip />
-  <ServicesPreview />
-  <ProofSection />
-  <HowItWorks />
-  <FAQ />
-  <CTA />
+  <ServicesAnimated client:visible />
+  <ProofAnimated client:visible />
+  <HowItWorksAnimated client:visible />
+  <FAQAnimated client:visible />
+  <CTAAnimated client:visible />
 </BaseLayout>
