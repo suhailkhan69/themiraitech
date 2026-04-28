@@ -51,6 +51,18 @@ const siteTitle = title.includes('Mirai') ? title : `${title} | Mirai`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
 
+    <!-- Google Search Console verification -->
+    <meta name="google-site-verification" content="OyTpszWUEZKWAlGEwD4edLv7YlSvVZo-GhuSbQOIgSs" />
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-60ZVE51E95"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-60ZVE51E95');
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
