@@ -15,32 +15,52 @@ const POST_COUNT = Math.min(5, Math.max(3, parseInt(process.env.POST_COUNT || '3
 const TODAY = new Date().toISOString().split('T')[0];
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.3-70b-versatile'; // Free, high quality
+const MODEL = 'llama-3.3-70b-versatile';
 
-async function groq(systemPrompt, userPrompt, maxTokens = 1024) {
-  const res = await fetch(GROQ_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: maxTokens,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
-      ],
-    }),
-  });
+async function groq(systemPrompt, userPrompt, maxTokens = 1024, retries = 3) {
+  let lastError;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          max_tokens: maxTokens,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userPrompt },
+          ],
+        }),
+      });
 
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Groq API error ${res.status}: ${err}`);
+      if (res.status === 429) {
+        const waitMs = attempt * 10000;
+        console.log(`  Rate limited (429). Waiting ${waitMs / 1000}s before retry ${attempt}/${retries}…`);
+        await new Promise(r => setTimeout(r, waitMs));
+        continue;
+      }
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Groq API error ${res.status}: ${err}`);
+      }
+
+      const data = await res.json();
+      return data.choices[0].message.content.trim();
+    } catch (err) {
+      lastError = err;
+      if (attempt < retries) {
+        const waitMs = attempt * 5000;
+        console.log(`  API call failed (attempt ${attempt}/${retries}): ${err.message}. Retrying in ${waitMs / 1000}s…`);
+        await new Promise(r => setTimeout(r, waitMs));
+      }
+    }
   }
-
-  const data = await res.json();
-  return data.choices[0].message.content.trim();
+  throw lastError;
 }
 
 function getExistingSlugs() {
@@ -50,6 +70,20 @@ function getExistingSlugs() {
       .filter(f => f.endsWith('.mdx') || f.endsWith('.md'))
       .map(f => f.replace(/\.(mdx|md)$/, ''))
   );
+}
+
+function getExistingTitles() {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  return fs.readdirSync(BLOG_DIR)
+    .filter(f => f.endsWith('.mdx') || f.endsWith('.md'))
+    .map(f => {
+      try {
+        const content = fs.readFileSync(path.join(BLOG_DIR, f), 'utf-8');
+        const match = content.match(/^title:\s*"(.+?)"/m);
+        return match ? match[1] : '';
+      } catch { return ''; }
+    })
+    .filter(Boolean);
 }
 
 function slugify(title) {
@@ -66,18 +100,22 @@ function estimateReadingTime(content) {
   return Math.max(3, Math.round(content.split(/\s+/).length / 200));
 }
 
-async function generateTopics(existingSlugs, count) {
-  const existingList = [...existingSlugs].slice(-20).join(', ') || 'none yet';
+async function generateTopics(existingSlugs, existingTitles, count) {
+  const slugList = [...existingSlugs].slice(-30).join(', ') || 'none yet';
+  const titleList = existingTitles.slice(-20).join(' | ') || 'none yet';
 
   const raw = await groq(
     `You generate blog topic ideas for Mirai, an AI automation agency targeting Western SMBs (US, UK, Canada, Australia) in law firms, real estate, dental clinics, e-commerce, and home services. Topics must be practical, specific, and immediately useful to non-technical business owners.`,
-    `Generate ${count} distinct blog post topics for today (${TODAY}). Each must be different from: ${existingList}.
+    `Generate ${count} DISTINCT blog post topics for today (${TODAY}).
+
+ALREADY PUBLISHED TITLES (do NOT repeat or closely paraphrase any of these):
+${titleList}
 
 Return ONLY a JSON array — no explanation, no markdown fences:
 [
   {
     "title": "How Dental Clinics Are Using AI to Recover $40,000 in Lost Revenue",
-    "description": "One sentence description under 160 chars.",
+    "description": "Discover the specific AI workflows that help dental practices automatically follow up on missed appointments, recover lapsed patients, and collect outstanding balances — without adding staff.",
     "category": "Industry Guides",
     "tags": ["Dental", "AI Voice Agents", "Revenue Recovery"],
     "slug": "dental-clinics-ai-revenue-recovery"
@@ -85,16 +123,28 @@ Return ONLY a JSON array — no explanation, no markdown fences:
 ]
 
 Rules:
-- Titles must be specific with a concrete outcome or number when possible
-- Category must be one of: AI Automation, Industry Guides, Tutorials
+- Titles must be specific with a concrete outcome, industry, or number
+- Descriptions must be 100–160 characters and genuinely describe the article value
+- Category must be EXACTLY one of: AI Automation, Industry Guides, Tutorials
 - 2–4 tags per post
-- Slugs must be URL-safe kebab-case, unique from: ${existingList}
-- Vary industries and categories across all ${count} posts`
+- Slugs: URL-safe kebab-case, unique from existing slugs: ${slugList}
+- Vary industries and categories — cover different industries in each batch`
   );
 
   const match = raw.match(/\[[\s\S]*\]/);
   if (!match) throw new Error(`No JSON array found in topics response:\n${raw}`);
-  return JSON.parse(match[0]);
+  const topics = JSON.parse(match[0]);
+
+  // Validate category enum to avoid Astro build errors
+  const validCategories = new Set(['AI Automation', 'Case Studies', 'Industry Guides', 'Tutorials']);
+  for (const t of topics) {
+    if (!validCategories.has(t.category)) {
+      console.warn(`  Warning: invalid category "${t.category}" — defaulting to "AI Automation"`);
+      t.category = 'AI Automation';
+    }
+  }
+
+  return topics;
 }
 
 async function generatePostContent(topic) {
@@ -159,30 +209,48 @@ async function run() {
   fs.mkdirSync(BLOG_DIR, { recursive: true });
 
   const existingSlugs = getExistingSlugs();
+  const existingTitles = getExistingTitles();
   console.log(`${existingSlugs.size} existing posts found`);
 
-  const topics = await generateTopics(existingSlugs, POST_COUNT);
+  let topics;
+  try {
+    topics = await generateTopics(existingSlugs, existingTitles, POST_COUNT);
+  } catch (err) {
+    console.error(`Failed to generate topics: ${err.message}`);
+    process.exit(1);
+  }
   console.log(`Got ${topics.length} topics\n`);
 
+  let written = 0;
   for (const topic of topics) {
     let slug = topic.slug || slugify(topic.title);
     if (existingSlugs.has(slug)) slug = `${slug}-${TODAY}`;
 
     console.log(`Generating: "${topic.title}"`);
-    const body = await generatePostContent(topic);
-    const mdx = buildMdx({ ...topic, slug }, body);
+    try {
+      const body = await generatePostContent(topic);
+      const mdx = buildMdx({ ...topic, slug }, body);
 
-    const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-    fs.writeFileSync(filePath, mdx, 'utf-8');
-    console.log(`  ✓ ${slug}.mdx`);
+      const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+      fs.writeFileSync(filePath, mdx, 'utf-8');
+      console.log(`  ✓ ${slug}.mdx`);
 
-    existingSlugs.add(slug);
+      existingSlugs.add(slug);
+      written++;
+    } catch (err) {
+      console.error(`  ✗ Failed to generate "${topic.title}": ${err.message}`);
+    }
 
     // Groq free tier: stay well under rate limits
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 3000));
   }
 
-  console.log(`\nDone. ${topics.length} posts written.`);
+  if (written === 0) {
+    console.error('No posts were written. Exiting with error so the workflow reports failure.');
+    process.exit(1);
+  }
+
+  console.log(`\nDone. ${written}/${topics.length} posts written.`);
 }
 
 run().catch(err => {
