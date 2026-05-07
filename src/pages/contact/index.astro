@@ -216,3 +216,32 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Send lead data to WhatsApp via Netlify Function alongside the Netlify Form submission.
+  // Uses sendBeacon so it fires reliably even as the page navigates to /contact/success.
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
+    if (!form) return;
+
+    form.addEventListener('submit', () => {
+      const fd = new FormData(form);
+      const payload = JSON.stringify({
+        source: 'contact-form',
+        name: fd.get('name'),
+        email: fd.get('email'),
+        company: fd.get('company'),
+        website: fd.get('website'),
+        budget: fd.get('budget'),
+        message: fd.get('message'),
+      });
+
+      // sendBeacon is fire-and-forget — survives page navigation
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon('/api/lead', new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload }).catch(() => {});
+      }
+    });
+  });
+</script>
