@@ -21,6 +21,12 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/api/test-whatsapp"
+  to = "/.netlify/functions/test-whatsapp"
+  status = 200
+  force = true
+
 # Trailing-slash canonical redirect
 [[redirects]]
   from = "/*/"
