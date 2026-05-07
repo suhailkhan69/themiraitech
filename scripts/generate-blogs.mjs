@@ -100,6 +100,45 @@ function estimateReadingTime(content) {
   return Math.max(3, Math.round(content.split(/\s+/).length / 200));
 }
 
+const SERVICE_LINKS = {
+  'voice': { name: 'AI Voice Agents', url: 'https://themiraitech.com/services#voice-agents' },
+  'phone': { name: 'AI Voice Agents', url: 'https://themiraitech.com/services#voice-agents' },
+  'call': { name: 'AI Voice Agents', url: 'https://themiraitech.com/services#voice-agents' },
+  'workflow': { name: 'Workflow Automation', url: 'https://themiraitech.com/services#workflow-automation' },
+  'automation': { name: 'Workflow Automation', url: 'https://themiraitech.com/services#workflow-automation' },
+  'chatbot': { name: 'AI Chatbots & RAG Systems', url: 'https://themiraitech.com/services#chatbots' },
+  'rag': { name: 'AI Chatbots & RAG Systems', url: 'https://themiraitech.com/services#chatbots' },
+  'lead': { name: 'AI Lead Generation', url: 'https://themiraitech.com/services#lead-generation' },
+  'outreach': { name: 'AI Lead Generation', url: 'https://themiraitech.com/services#lead-generation' },
+  'dental': { name: 'dental clinic AI solutions', url: 'https://themiraitech.com/solutions/dental-medical' },
+  'law': { name: 'law firm AI automation', url: 'https://themiraitech.com/solutions/legal' },
+  'legal': { name: 'law firm AI automation', url: 'https://themiraitech.com/solutions/legal' },
+  'real estate': { name: 'real estate AI tools', url: 'https://themiraitech.com/solutions/real-estate' },
+  'ecommerce': { name: 'e-commerce AI automation', url: 'https://themiraitech.com/solutions/ecommerce' },
+  'home service': { name: 'home services AI', url: 'https://themiraitech.com/solutions/home-services' },
+};
+
+function getInternalLinks(topic) {
+  const titleLower = (topic.title + ' ' + topic.tags.join(' ')).toLowerCase();
+  const matched = new Map();
+  for (const [key, link] of Object.entries(SERVICE_LINKS)) {
+    if (titleLower.includes(key) && !matched.has(link.url)) {
+      matched.set(link.url, link);
+      if (matched.size >= 2) break;
+    }
+  }
+  if (matched.size === 0) {
+    matched.set(SERVICE_LINKS.automation.url, SERVICE_LINKS.automation);
+  }
+  return [...matched.values()];
+}
+
+function buildCtaSection(topic) {
+  const links = getInternalLinks(topic);
+  const linkLines = links.map(l => `- [${l.name}](${l.url})`).join('\n');
+  return `\n---\n\n*Ready to implement this in your business? Mirai deploys AI automation for SMBs across the US, UK, Canada, and Australia — typically in under a week.*\n\n**Explore related services:**\n${linkLines}\n- [Book a free strategy call](https://themiraitech.com/contact)\n`;
+}
+
 async function generateTopics(existingSlugs, existingTitles, count) {
   const slugList = [...existingSlugs].slice(-30).join(', ') || 'none yet';
   const titleList = existingTitles.slice(-20).join(' | ') || 'none yet';
@@ -115,7 +154,7 @@ Return ONLY a JSON array — no explanation, no markdown fences:
 [
   {
     "title": "How Dental Clinics Are Using AI to Recover $40,000 in Lost Revenue",
-    "description": "Discover the specific AI workflows that help dental practices automatically follow up on missed appointments, recover lapsed patients, and collect outstanding balances — without adding staff.",
+    "description": "The specific AI workflows dental practices use to follow up on missed appointments, recover lapsed patients, and collect outstanding balances — without adding staff.",
     "category": "Industry Guides",
     "tags": ["Dental", "AI Voice Agents", "Revenue Recovery"],
     "slug": "dental-clinics-ai-revenue-recovery"
@@ -124,11 +163,12 @@ Return ONLY a JSON array — no explanation, no markdown fences:
 
 Rules:
 - Titles must be specific with a concrete outcome, industry, or number
-- Descriptions must be 100–160 characters and genuinely describe the article value
+- Descriptions must be 110–155 characters and clearly describe the article value (no filler phrases)
 - Category must be EXACTLY one of: AI Automation, Industry Guides, Tutorials
 - 2–4 tags per post
 - Slugs: URL-safe kebab-case, unique from existing slugs: ${slugList}
-- Vary industries and categories — cover different industries in each batch`
+- Mention a specific market (US, UK, Canada, or Australia) OR a specific industry in every title
+- Vary industries and categories — cover different industries and geographies in each batch`
   );
 
   const match = raw.match(/\[[\s\S]*\]/);
@@ -229,7 +269,8 @@ async function run() {
     console.log(`Generating: "${topic.title}"`);
     try {
       const body = await generatePostContent(topic);
-      const mdx = buildMdx({ ...topic, slug }, body);
+      const cta = buildCtaSection(topic);
+      const mdx = buildMdx({ ...topic, slug }, body + cta);
 
       const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
       fs.writeFileSync(filePath, mdx, 'utf-8');

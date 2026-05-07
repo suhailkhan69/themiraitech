@@ -7,11 +7,67 @@ import ProofAnimated from '@/components/sections/ProofAnimated';
 import HowItWorksAnimated from '@/components/sections/HowItWorksAnimated';
 import FAQAnimated from '@/components/sections/FAQAnimated';
 import CTAAnimated from '@/components/sections/CTAAnimated';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does AI automation cost for a small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI automation projects for SMBs typically start at $3,000 for a single automation or AI chatbot, and $8,000–$20,000 for a full AI voice agent system with workflow integrations. We offer both one-time build fees and monthly retainers for ongoing optimization. Every engagement starts with a free strategy call where we scope the project and give you a fixed-price quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to deploy an AI voice agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most AI automation projects go live in 3–5 days. Simple automations can be ready in 24–48 hours. Complex multi-system integrations (voice agent + CRM + email workflows) take up to 1 week. We give you a realistic timeline upfront and hit it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my business data secure with AI automation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All data is encrypted in transit and at rest, we use SOC 2-compliant infrastructure, we never train AI models on your proprietary data without explicit permission, and we sign NDAs before any project begins. For regulated industries (legal, medical), we build specifically for compliance requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will AI automation integrate with my existing tools like Salesforce, HubSpot, or Shopify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost certainly. We have built integrations with 80+ tools including Salesforce, HubSpot, Clio, Dentrix, Shopify, GoHighLevel, Zapier, Slack, Google Workspace, and Microsoft 365. If you use a tool with an API, we can connect to it. We handle all integration work — you do not need a technical team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What support is included after AI automation is deployed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All projects include 30 days of post-launch support at no extra cost — we monitor performance, fix any issues, and tune the system. After that, you can choose a monthly optimization retainer ($500–$2,000/month) or a pay-as-you-go support package."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AI automation right for my small business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Good candidates have repetitive high-volume tasks (answering the same questions daily, manual data entry, appointment scheduling), a clear bottleneck that costs time or money, and a desire to scale without proportionally scaling headcount. Industries with the highest ROI include law firms, dental clinics, real estate agencies, e-commerce brands, and home services businesses in the US, UK, Canada, and Australia."
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Mirai — AI Automation Agency"
-  description="Mirai builds AI voice agents, workflow automation, and custom AI systems for Western SMBs. Deployed in 1 week. Book a free strategy call."
+  title="Mirai — AI Automation Agency for SMBs | US, UK, Canada, Australia"
+  description="AI voice agents, workflow automation & custom AI for law firms, dental clinics, real estate & home services businesses. Deployed in 1 week. Book a free strategy call."
+  schema={faqSchema}
 >
   <HeroAnimated client:load />
   <LogoStrip />

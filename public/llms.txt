@@ -1,0 +1,98 @@
+# Mirai — AI Automation Agency
+
+> Mirai builds and deploys AI voice agents, workflow automation systems, custom AI chatbots, and AI lead generation for small and medium-sized businesses (SMBs) in the United States, United Kingdom, Canada, and Australia. Most projects go live within 1 week.
+
+## What We Do
+
+Mirai is an AI automation agency that helps non-technical business owners eliminate operational bottlenecks and scale their capacity without scaling headcount. We build production-ready AI systems — not strategy decks or pilot programs.
+
+**Target clients:** Law firms, real estate agencies, dental and medical clinics, e-commerce brands, home services companies, and B2B service businesses with 5–200 employees.
+
+**Target markets:** US, UK, Canada, Australia (English-speaking Western SMBs).
+
+## Services
+
+### AI Voice Agents
+We build AI-powered phone agents that handle inbound and outbound calls 24/7. They qualify leads, book appointments, answer FAQs, take messages, and escalate to humans when needed. Built with natural multi-turn conversation — not IVR menus.
+- Starts at $8,000 setup + $500/month
+- Deployed in under 1 week
+- Integrates with Cal.com, Calendly, GoHighLevel, and most CRMs
+- URL: https://themiraitech.com/services#voice-agents
+
+### Workflow Automation
+We design and build end-to-end automation workflows using n8n, Make (Integromat), and custom APIs. We connect tools into a single intelligent system that eliminates manual, repetitive work.
+- Starts at $3,000 for a single workflow system
+- 80+ native integrations (HubSpot, Salesforce, Shopify, Slack, Google Workspace, etc.)
+- URL: https://themiraitech.com/services#workflow-automation
+
+### AI Chatbots & RAG Systems
+Custom AI chatbots powered by Retrieval-Augmented Generation (RAG) — trained on your documents, products, and policies. Deployable on websites, WhatsApp, Slack, or internal tools.
+- Starts at $4,000 setup + $300/month
+- Deflects up to 80% of support tickets automatically
+- URL: https://themiraitech.com/services#chatbots
+
+### AI Lead Generation
+AI-powered outreach and lead nurturing systems that identify, contact, qualify, and warm prospects — delivering ready-to-close leads without manual effort.
+- Starts at $5,000 setup + $800/month
+- Multi-channel: email, LinkedIn, SMS
+- Compliance-first (CAN-SPAM, GDPR)
+- URL: https://themiraitech.com/services#lead-generation
+
+## Industry Solutions
+
+- **Law Firms & Legal Practices:** https://themiraitech.com/solutions/legal
+- **Real Estate Agencies:** https://themiraitech.com/solutions/real-estate
+- **Dental & Medical Clinics:** https://themiraitech.com/solutions/dental-medical
+- **E-commerce Brands:** https://themiraitech.com/solutions/ecommerce
+- **Home Services Companies:** https://themiraitech.com/solutions/home-services
+
+## Key Facts
+
+- **Deployment time:** 3–5 days for most projects; up to 1 week for complex integrations
+- **Post-launch support:** 30 days included free; optional retainer after
+- **Data security:** Encrypted in transit and at rest; NDAs signed before every project; SOC 2-compliant infrastructure
+- **Integrations:** 80+ tools including Salesforce, HubSpot, Clio, Dentrix, Shopify, GoHighLevel, Zapier, Google Workspace, Microsoft 365
+- **Founded:** 2024
+- **Contact:** https://themiraitech.com/contact
+
+## Pricing Summary
+
+| Service | Setup | Monthly |
+|---|---|---|
+| AI Voice Agent | from $8,000 | from $500 |
+| Workflow Automation | from $3,000 | optional |
+| AI Chatbot (RAG) | from $4,000 | from $300 |
+| AI Lead Generation | from $5,000 | from $800 |
+
+## Content & Blog
+
+Mirai publishes practical guides, case studies, and tutorials on AI automation for SMBs.
+- Blog index: https://themiraitech.com/blog
+- RSS feed: https://themiraitech.com/rss.xml
+- Topics covered: AI voice agents, workflow automation, chatbots, lead generation, industry-specific AI guides for law firms, dental clinics, real estate, e-commerce, and home services
+
+## Case Studies
+
+- **Vertex Realty (Real Estate):** https://themiraitech.com/case-studies/vertex-realty
+- **ClearSmile Dental:** https://themiraitech.com/case-studies/clearsmile-dental
+- **Acme Law Group:** https://themiraitech.com/case-studies/acme-law
+
+## Common Questions
+
+**Q: How long does AI automation take to deploy?**
+A: Most projects go live in 3–5 days. Simple automations can be ready in 24–48 hours. Complex integrations take up to 1 week.
+
+**Q: Does AI automation work for small businesses?**
+A: Yes. Mirai specifically serves SMBs with 5–200 employees. The best candidates have repetitive high-volume tasks, a clear bottleneck, and a desire to scale without adding staff.
+
+**Q: What industries does Mirai serve?**
+A: Law firms, real estate agencies, dental and medical clinics, e-commerce brands, home services companies, and any SMB with high call volume or repetitive admin tasks.
+
+**Q: What countries does Mirai operate in?**
+A: Mirai serves businesses in the United States, United Kingdom, Canada, and Australia.
+
+## Contact
+
+Book a free 30-minute strategy call: https://themiraitech.com/contact
+LinkedIn: https://linkedin.com/company/themiraitech
+Twitter/X: https://twitter.com/themiraitech

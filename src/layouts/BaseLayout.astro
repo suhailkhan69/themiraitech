@@ -10,17 +10,129 @@ interface Props {
   ogImage?: string;
   canonicalURL?: string;
   noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
-  description = 'Mirai builds AI voice agents, workflow automation, and custom AI systems for Western SMBs. Book a call to see how we can transform your business.',
+  description = 'Mirai builds AI voice agents, workflow automation, and custom AI systems for law firms, dental clinics, real estate agencies, and e-commerce brands in the US, UK, Canada, and Australia.',
   ogImage = '/og-default.png',
   canonicalURL = Astro.url.href,
   noindex = false,
+  schema,
 } = Astro.props;
 
 const siteTitle = title.includes('Mirai') ? title : `${title} | Mirai`;
+
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://themiraitech.com/#website",
+      "url": "https://themiraitech.com",
+      "name": "Mirai",
+      "description": "AI automation agency for SMBs in the US, UK, Canada, and Australia",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://themiraitech.com/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://themiraitech.com/blog?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://themiraitech.com/#organization",
+      "name": "Mirai",
+      "alternateName": "mirAi Tech",
+      "url": "https://themiraitech.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://themiraitech.com/logo.svg",
+        "width": 200,
+        "height": 60
+      },
+      "description": "AI automation agency specializing in AI voice agents, workflow automation, custom AI chatbots, and AI lead generation for law firms, real estate agencies, dental clinics, e-commerce brands, and home services companies across the US, UK, Canada, and Australia.",
+      "foundingDate": "2024",
+      "priceRange": "$$$",
+      "knowsAbout": [
+        "AI voice agents",
+        "workflow automation",
+        "RAG chatbots",
+        "AI lead generation",
+        "n8n automation",
+        "Make automation",
+        "CRM automation",
+        "business process automation",
+        "dental clinic AI",
+        "law firm AI",
+        "real estate AI automation"
+      ],
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "United Kingdom" },
+        { "@type": "Country", "name": "Canada" },
+        { "@type": "Country", "name": "Australia" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "AI Automation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Voice Agents",
+              "url": "https://themiraitech.com/services#voice-agents",
+              "description": "24/7 AI phone agents that handle inbound calls, qualify leads, and book appointments for SMBs."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Workflow Automation",
+              "url": "https://themiraitech.com/services#workflow-automation",
+              "description": "End-to-end automation of repetitive business tasks using n8n, Make, and custom APIs."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Chatbots & RAG Systems",
+              "url": "https://themiraitech.com/services#chatbots",
+              "description": "Custom AI chatbots trained on your business documents, deployed on your website or WhatsApp."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Lead Generation",
+              "url": "https://themiraitech.com/services#lead-generation",
+              "description": "AI-powered outreach systems that identify, contact, and qualify prospects automatically."
+            }
+          }
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "url": "https://themiraitech.com/contact",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://linkedin.com/company/themiraitech",
+        "https://twitter.com/themiraitech"
+      ]
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -73,23 +185,11 @@ const siteTitle = title.includes('Mirai') ? title : `${title} | Mirai`;
     <!-- View Transitions -->
     <ClientRouter />
 
-    <!-- Schema.org Organization -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Mirai",
-      "url": "https://themiraitech.com",
-      "logo": "https://themiraitech.com/favicon.svg",
-      "description": "AI automation agency specializing in voice agents, workflow automation, and custom AI systems for SMBs.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://linkedin.com/company/themiraitech",
-        "https://twitter.com/themiraitech"
-      ]
-    })} />
+    <!-- Schema.org site-wide graph -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+
+    <!-- Page-specific Schema.org -->
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
