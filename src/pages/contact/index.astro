@@ -218,14 +218,29 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  // Send lead data to WhatsApp via Netlify Function alongside the Netlify Form submission.
-  // Uses sendBeacon so it fires reliably even as the page navigates to /contact/success.
-  document.addEventListener('DOMContentLoaded', () => {
+  // Take over form submission so we control both Netlify Forms capture
+  // AND the /api/lead call AND the redirect — avoiding the double-redirect 404.
+  function setupContactForm() {
     const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
-    if (!form) return;
+    if (!form || form.dataset.jsHandled) return;
+    form.dataset.jsHandled = 'true';
 
-    form.addEventListener('submit', () => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const btn = form.querySelector<HTMLButtonElement>('[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
       const fd = new FormData(form);
+
+      // 1. Save to Netlify Forms via fetch (no redirect, just data capture)
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(fd as any).toString(),
+      }).catch(() => {});
+
+      // 2. Send structured notification to WhatsApp
       const payload = JSON.stringify({
         source: 'contact-form',
         name: fd.get('name'),
@@ -236,12 +251,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         message: fd.get('message'),
       });
 
-      // sendBeacon is fire-and-forget — survives page navigation
       if (navigator.sendBeacon) {
         navigator.sendBeacon('/api/lead', new Blob([payload], { type: 'application/json' }));
       } else {
-        fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload }).catch(() => {});
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+        }).catch(() => {});
       }
+
+      // 3. Redirect ourselves — no Netlify redirect chain involved
+      window.location.href = '/contact/success';
     });
-  });
+  }
+
+  // Runs on initial load and after View Transitions navigations
+  document.addEventListener('DOMContentLoaded', setupContactForm);
+  document.addEventListener('astro:page-load', setupContactForm);
 </script>
