@@ -1,5 +1,44 @@
 ---
 import SolutionLayout from '@/layouts/SolutionLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can AI reduce no-shows at my dental practice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI automated reminder systems send multi-channel reminders (SMS, voice, email) with two-way confirmation — patients can confirm or reschedule without calling. This reduces no-shows by 65% on average."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI fill last-minute cancellation slots automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When a cancellation occurs, Mirai AI immediately contacts your waitlist by text and phone, and books the first available patient into the open slot — filling 94% of cancelled appointments automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AI scheduling work with Dentrix, Eaglesoft, or Open Dental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai integrates with Dentrix, Eaglesoft, Open Dental, Curve Dental, and most major dental practice management systems. All bookings sync directly to your existing calendar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is dental AI automation HIPAA compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All Mirai systems are built for HIPAA compliance — encrypted data, compliant messaging, BAA agreements signed, and no PHI stored beyond what is required. We build specifically for healthcare compliance."
+      }
+    }
+  ]
+};
 ---
 
 <SolutionLayout
@@ -44,4 +83,5 @@ import SolutionLayout from '@/layouts/SolutionLayout.astro';
     result: '+$180k annual revenue',
     href: '/case-studies/clearsmile-dental',
   }}
+  schema={faqSchema}
 />

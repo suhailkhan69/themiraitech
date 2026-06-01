@@ -1,5 +1,44 @@
 ---
 import SolutionLayout from '@/layouts/SolutionLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does AI help real estate agencies generate more leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI chatbots on your website engage visitors 24/7, qualify them with questions about budget, timeline, and location, then book them directly into agent calendars — converting 3x more website visitors into booked consultations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI follow up with real estate leads automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai builds automated lead nurturing sequences that follow up via SMS, email, and voice within minutes of a lead inquiry — keeping your agency top of mind while agents focus on active clients."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AI real estate automation integrate with my CRM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai integrates with Follow Up Boss, HubSpot, GoHighLevel, Salesforce, LionDesk, and most real estate CRMs. Leads flow automatically from your website into your CRM with full qualification data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly can AI lead generation be deployed for my agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most real estate AI systems go live within 3-5 days. The AI chatbot is trained on your listings, FAQs, and qualification criteria — then deployed on your website. No technical work required from your team."
+      }
+    }
+  ]
+};
 ---
 
 <SolutionLayout
@@ -44,4 +83,5 @@ import SolutionLayout from '@/layouts/SolutionLayout.astro';
     result: '342% more qualified leads',
     href: '/case-studies/vertex-realty',
   }}
+  schema={faqSchema}
 />

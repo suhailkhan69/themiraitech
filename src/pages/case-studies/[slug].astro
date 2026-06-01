@@ -18,11 +18,74 @@ interface Props {
 
 const { study } = Astro.props;
 const { Content } = await render(study);
+
+const pageUrl = `https://themiraitech.com/case-studies/${study.id}`;
+
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": `${pageUrl}#article`,
+      "headline": study.data.title,
+      "description": study.data.result,
+      "url": pageUrl,
+      "datePublished": study.data.pubDate.toISOString(),
+      "inLanguage": "en-US",
+      "author": {
+        "@type": "Organization",
+        "@id": "https://themiraitech.com/#organization",
+        "name": "Mirai"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://themiraitech.com/#organization",
+        "name": "Mirai",
+        "logo": { "@type": "ImageObject", "url": "https://themiraitech.com/logo.svg" }
+      },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": pageUrl },
+      "about": {
+        "@type": "Thing",
+        "name": `AI Automation for ${study.data.industry}`
+      }
+    },
+    ...(study.data.testimonial ? [{
+      "@type": "Review",
+      "@id": `${pageUrl}#review`,
+      "reviewBody": study.data.testimonial.quote,
+      "author": {
+        "@type": "Person",
+        "name": study.data.testimonial.author,
+        "jobTitle": study.data.testimonial.role
+      },
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "AI Automation",
+        "provider": { "@id": "https://themiraitech.com/#organization" }
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }] : []),
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://themiraitech.com" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://themiraitech.com/case-studies" },
+        { "@type": "ListItem", "position": 3, "name": study.data.client, "item": pageUrl }
+      ]
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title={`${study.data.client} Case Study | Mirai`}
-  description={`${study.data.result} — See how Mirai helped ${study.data.client} with AI automation.`}
+  title={`${study.data.client}: ${study.data.result.split(',')[0]} | Mirai Case Study`}
+  description={`${study.data.result} See the exact AI automation system Mirai built for ${study.data.client} in ${study.data.industry}.`}
+  canonicalURL={pageUrl}
+  schema={caseStudySchema}
 >
   <!-- Breadcrumb -->
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8">

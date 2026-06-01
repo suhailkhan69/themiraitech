@@ -1,5 +1,44 @@
 ---
 import SolutionLayout from '@/layouts/SolutionLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can AI automation help my law firm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI automation for law firms handles intake calls, qualifies leads, generates documents, and manages client communications — reducing intake time from 45 minutes to under 8 minutes and saving paralegals 3+ hours daily."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does AI automation cost for a law firm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI automation for law firms starts at $3,000 for a single workflow (e.g. document automation), and $8,000–$15,000 for a full AI intake agent system. Every project starts with a free strategy call and fixed-price quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AI automation work with Clio, MyCase, or other legal software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai integrates AI automation directly with Clio, MyCase, PracticePanther, Smokeball, and most legal practice management systems. No disruption to your existing workflows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is AI automation for law firms HIPAA or data-compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All data is encrypted in transit and at rest. We sign NDAs before every engagement and build on SOC 2-compliant infrastructure. For regulated legal matters, we design specifically for your jurisdiction's compliance requirements."
+      }
+    }
+  ]
+};
 ---
 
 <SolutionLayout
@@ -44,4 +83,5 @@ import SolutionLayout from '@/layouts/SolutionLayout.astro';
     result: '82% faster intake',
     href: '/case-studies/acme-law',
   }}
+  schema={faqSchema}
 />

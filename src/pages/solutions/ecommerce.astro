@@ -1,5 +1,44 @@
 ---
 import SolutionLayout from '@/layouts/SolutionLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What e-commerce tasks can AI automate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI can automate customer support (order tracking, returns, FAQs), abandoned cart recovery, inventory management alerts, review request emails, shipping notifications, and personalized product recommendations — typically saving 10+ hours per week."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does AI reduce e-commerce customer support costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI chatbots handle 70-80% of routine support tickets — order status, return policies, product questions — automatically. This reduces support labor costs by 15-20% and provides 24/7 coverage without additional headcount."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AI automation work with Shopify or WooCommerce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai builds AI systems that integrate natively with Shopify, WooCommerce, BigCommerce, Magento, and other major e-commerce platforms — pulling real-time order data to give customers accurate, instant answers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to deploy AI automation for my e-commerce store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most e-commerce AI automations go live within 3-5 days. A Shopify-integrated support chatbot with order tracking and FAQ handling can be live in as little as 48 hours after the strategy call."
+      }
+    }
+  ]
+};
 ---
 
 <SolutionLayout
@@ -39,4 +78,5 @@ import SolutionLayout from '@/layouts/SolutionLayout.astro';
       stat: '+22% repeat purchase rate',
     },
   ]}
+  schema={faqSchema}
 />

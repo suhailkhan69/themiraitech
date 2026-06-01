@@ -18,10 +18,15 @@ const {
   title,
   description = 'Mirai builds AI voice agents, workflow automation, and custom AI systems for law firms, dental clinics, real estate agencies, and e-commerce brands in the US, UK, Canada, and Australia.',
   ogImage = '/og-default.png',
-  canonicalURL = Astro.url.href,
+  canonicalURL: rawCanonical = Astro.url.href,
   noindex = false,
   schema,
 } = Astro.props;
+
+// Always use canonical URLs without trailing slash (except root)
+const canonicalURL = rawCanonical === 'https://themiraitech.com/'
+  ? rawCanonical
+  : rawCanonical.replace(/\/$/, '');
 
 const siteTitle = title.includes('Mirai') ? title : `${title} | Mirai`;
 

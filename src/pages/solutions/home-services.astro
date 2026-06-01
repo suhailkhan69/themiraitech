@@ -1,5 +1,44 @@
 ---
 import SolutionLayout from '@/layouts/SolutionLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can AI help home services businesses book more jobs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI voice agents answer every call — even after hours and on weekends — qualify the service request, check availability, and book the job directly into your calendar. Home services businesses capture 40% more leads this way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI send automated booking confirmations and reminders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. After booking, AI sends confirmation texts and emails automatically, then reminder messages 24 hours and 2 hours before the appointment — reducing no-shows by up to 60% with zero manual effort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does AI scheduling work for plumbers, HVAC, landscaping, and cleaning companies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mirai builds AI scheduling systems for all home services trades — plumbing, HVAC, electrical, landscaping, cleaning, pest control, and more. The system is trained on your services, pricing, and availability rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What CRM and scheduling tools does AI home services automation integrate with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mirai integrates with ServiceTitan, Jobber, HouseCall Pro, GoHighLevel, Housecall, and most field service management tools — so all bookings flow directly into your existing system."
+      }
+    }
+  ]
+};
 ---
 
 <SolutionLayout
@@ -39,4 +78,5 @@ import SolutionLayout from '@/layouts/SolutionLayout.astro';
       stat: '5× more Google reviews collected',
     },
   ]}
+  schema={faqSchema}
 />

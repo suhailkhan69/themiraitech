@@ -6,6 +6,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://themiraitech.com',
   output: 'static',
+  trailingSlash: 'never',
   integrations: [
     mdx(),
     sitemap({

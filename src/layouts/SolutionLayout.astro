@@ -12,6 +12,7 @@ interface Props {
   title?: string;
   seoDescription?: string;
   pageUrl?: string;
+  schema?: Record<string, unknown>;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   title = `AI Automation for ${industry} Businesses | Mirai`,
   seoDescription,
   pageUrl,
+  schema: extraSchema,
 } = Astro.props;
 
 const canonicalUrl = pageUrl ?? Astro.url.href;
@@ -57,7 +59,7 @@ const solutionSchema = {
 };
 ---
 
-<BaseLayout title={title} description={seoDescription || description} canonicalURL={canonicalUrl} schema={solutionSchema}>
+<BaseLayout title={title} description={seoDescription || description} canonicalURL={canonicalUrl} schema={extraSchema ? [solutionSchema, extraSchema] as Record<string, unknown>[] : solutionSchema}>
   <!-- Hero -->
   <section class="relative py-24 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>

@@ -30,7 +30,7 @@ const related = allPosts
 
 const pageUrl = `https://themiraitech.com/blog/${post.id}`;
 
-const articleSchema = {
+const articleSchema: { "@context": string; "@graph": Record<string, unknown>[] } = {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -81,6 +81,44 @@ const articleSchema = {
     }
   ]
 };
+
+// Add HowTo schema for tutorial posts
+const isTutorial = post.data.tags?.some((t: string) => t.toLowerCase().includes('tutorial') || t.toLowerCase().includes('guide')) || post.data.title.toLowerCase().includes('tutorial') || post.data.title.toLowerCase().includes('step-by-step') || post.data.title.toLowerCase().includes('how to');
+
+if (isTutorial) {
+  articleSchema["@graph"].push({
+    "@type": "HowTo",
+    "@id": `${pageUrl}#howto`,
+    "name": post.data.title,
+    "description": post.data.description,
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Identify your automation opportunity",
+        "text": "Audit your current workflows to find repetitive, high-volume tasks that consume staff time — these are your best AI automation candidates."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Choose the right AI tool",
+        "text": "Select an AI automation platform that integrates with your existing software stack and matches your technical requirements and budget."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Configure and test",
+        "text": "Set up the automation, train it on your specific data and rules, then test thoroughly before going live with real customers."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Deploy and monitor",
+        "text": "Launch the automation and monitor performance metrics closely for the first 30 days, optimizing based on real usage data."
+      }
+    ]
+  });
+}
 ---
 
 <BaseLayout
