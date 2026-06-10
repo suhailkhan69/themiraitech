@@ -4,7 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
 <BaseLayout
   title="AI Automation Agency for SMBs | Free Strategy Call | Mirai"
-  description="Book a free 30-min strategy call with Mirai. We build AI voice agents, workflow automation, and chatbots for law firms, dental clinics, real estate, and e-commerce — deployed in under 1 week."
+  description="Book a free 30-min strategy call with Mirai. We build AI voice agents, workflow automation, and chatbots for law firms, dental clinics, real estate, and e-commerce – deployed in under 1 week."
 >
   <section class="relative py-16 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-hero pointer-events-none"></div>
@@ -17,7 +17,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
             Let's talk about<br />your business.
           </h1>
           <p class="text-text-secondary text-lg leading-relaxed mb-10">
-            Tell us what you're working on. We'll respond within 24 hours with honest thoughts on whether and how AI automation can help — and if it can, what that looks like in practice.
+            Tell us what you're working on. We'll respond within 24 hours with honest thoughts on whether and how AI automation can help – and if it can, what that looks like in practice.
           </p>
 
           <!-- Contact details -->
@@ -45,7 +45,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
               <div>
                 <p class="text-text-muted text-xs mb-1">Prefer to talk first?</p>
                 <p class="text-text-primary text-sm">
-                  Use the form and mention your preferred time — we'll send a calendar invite with your reply.
+                  Use the form and mention your preferred time – we'll send a calendar invite with your reply.
                 </p>
               </div>
             </div>
@@ -74,7 +74,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
                 'You get a personal reply (not a bot) within 24 hours',
                 'If it\'s a fit, we schedule a 30-min strategy call',
                 'On the call: we identify your best automation opportunity and give you a rough estimate',
-                'You decide if you want to move forward — no pressure',
+                'You decide if you want to move forward – no pressure',
               ].map((step, i) => (
                 <li class="flex items-start gap-3 text-sm text-text-secondary">
                   <span class="font-mono text-accent-indigo font-semibold flex-shrink-0 text-xs mt-0.5">
@@ -218,7 +218,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
 <script>
   // Take over form submission so we control both Netlify Forms capture
-  // AND the /api/lead call AND the redirect — avoiding the double-redirect 404.
+  // AND the /api/lead call AND the redirect – avoiding the double-redirect 404.
   function setupContactForm() {
     const form = document.querySelector<HTMLFormElement>('form[name="contact"]');
     if (!form || form.dataset.jsHandled) return;
@@ -260,7 +260,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         }).catch(() => {});
       }
 
-      // 3. Redirect ourselves — no Netlify redirect chain involved
+      // 3. Redirect ourselves – no Netlify redirect chain involved
       window.location.href = '/contact/success';
     });
   }

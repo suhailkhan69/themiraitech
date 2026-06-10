@@ -10,10 +10,10 @@ const services = [
       </svg>
     ),
     title: 'AI Voice Agents',
-    description: 'Never miss a call again. Our AI voice agents handle inbound inquiries, qualify leads, book appointments, and answer FAQs — 24/7, at scale.',
+    description: 'Never miss a call again. Our AI voice agents handle inbound inquiries, qualify leads, book appointments, and answer FAQs – 24/7, at scale.',
     stat: '3× more calls handled',
     href: '/services#voice-agents',
-    color: '#6366F1',
+    color: '#3B82F6',
   },
   {
     icon: (
@@ -37,7 +37,7 @@ const services = [
     description: 'AI assistants trained on your documents, products, and policies. Deploy on your website, WhatsApp, or internal tools.',
     stat: '80% support ticket deflection',
     href: '/services#chatbots',
-    color: '#22D3EE',
+    color: '#F59E0B',
   },
   {
     icon: (
@@ -49,7 +49,7 @@ const services = [
     description: 'Automated outreach, qualification, and nurturing systems that fill your pipeline while you focus on closing.',
     stat: '342% more qualified leads',
     href: '/services#lead-generation',
-    color: '#6366F1',
+    color: '#3B82F6',
   },
 ];
 
@@ -76,11 +76,11 @@ export default function ServicesAnimated() {
           className="text-center mb-16"
         >
           <div className="section-label mb-4">What we build</div>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-[#F5F5F7] mb-4 leading-tight">
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-[#F0F6FC] mb-4 leading-tight">
             AI that does the work.
             <br />You do the strategy.
           </h2>
-          <p className="text-[#A1A1AA] text-lg max-w-2xl mx-auto">
+          <p className="text-[#8B949E] text-lg max-w-2xl mx-auto">
             Four core systems that remove bottlenecks, cut costs, and compound over time.
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export default function ServicesAnimated() {
             <TiltCard
               href={svc.href}
               maxTilt={6}
-              className="group relative rounded-xl border border-[#27272A] bg-[#111113] p-8 overflow-hidden block h-full"
+              className="group relative rounded-xl border border-[#21262D] bg-[#0D1117] p-8 overflow-hidden block h-full"
             >
               {/* Animated border glow on hover */}
               <motion.div
@@ -115,22 +115,22 @@ export default function ServicesAnimated() {
 
               {/* Icon */}
               <motion.div
-                className="w-10 h-10 rounded-lg border border-[#27272A] flex items-center justify-center mb-6 transition-colors duration-300"
+                className="w-10 h-10 rounded-lg border border-[#21262D] flex items-center justify-center mb-6 transition-colors duration-300"
                 style={{ color: svc.color }}
                 whileHover={{ scale: 1.05 }}
               >
                 {svc.icon}
               </motion.div>
 
-              <h3 className="font-heading text-lg font-semibold text-[#F5F5F7] mb-2">{svc.title}</h3>
-              <p className="text-[#A1A1AA] text-sm leading-relaxed mb-6">{svc.description}</p>
+              <h3 className="font-heading text-lg font-semibold text-[#F0F6FC] mb-2">{svc.title}</h3>
+              <p className="text-[#8B949E] text-sm leading-relaxed mb-6">{svc.description}</p>
 
               <div className="flex items-center justify-between">
-                <span className="font-mono text-sm font-semibold" style={{ color: '#22D3EE' }}>
+                <span className="font-mono text-sm font-semibold" style={{ color: '#F59E0B' }}>
                   {svc.stat}
                 </span>
                 <svg
-                  className="w-4 h-4 text-[#71717A] group-hover:text-[#6366F1] group-hover:translate-x-1 transition-all duration-200"
+                  className="w-4 h-4 text-[#6E7681] group-hover:text-[#3B82F6] group-hover:translate-x-1 transition-all duration-200"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />

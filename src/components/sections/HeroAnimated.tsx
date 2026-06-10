@@ -21,9 +21,9 @@ const stats = [
 
 // Simulated live activity feed for the 3D panel
 const FEED = [
-  { icon: '📞', text: 'Inbound call answered', detail: 'Lead qualified · meeting booked', color: '#22D3EE' },
+  { icon: '📞', text: 'Inbound call answered', detail: 'Lead qualified · meeting booked', color: '#F59E0B' },
   { icon: '⚡', text: 'Workflow triggered', detail: 'Invoice → CRM → Slack in 1.2s', color: '#8B5CF6' },
-  { icon: '💬', text: 'Support ticket deflected', detail: 'RAG chatbot · order status', color: '#6366F1' },
+  { icon: '💬', text: 'Support ticket deflected', detail: 'RAG chatbot · order status', color: '#3B82F6' },
   { icon: '🎯', text: 'New lead captured', detail: 'Qualified · synced to pipeline', color: '#34D399' },
   { icon: '📅', text: 'Cancellation slot filled', detail: 'Waitlist contacted · rebooked', color: '#F59E0B' },
 ];
@@ -51,12 +51,12 @@ function LiveFeed() {
             initial={{ opacity: 0, y: -12, scale: 0.97 }}
             animate={{ opacity: 1 - pos * 0.28, y: 0, scale: 1 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="flex items-center gap-3 rounded-lg border border-[#27272A] bg-[#0D0D0F] px-3.5 py-2.5"
+            className="flex items-center gap-3 rounded-lg border border-[#21262D] bg-[#0D0D0F] px-3.5 py-2.5"
           >
             <span className="text-base leading-none">{item.icon}</span>
             <div className="min-w-0">
-              <p className="text-[#F5F5F7] text-[13px] font-medium leading-tight truncate">{item.text}</p>
-              <p className="text-[#71717A] text-[11px] leading-tight truncate">{item.detail}</p>
+              <p className="text-[#F0F6FC] text-[13px] font-medium leading-tight truncate">{item.text}</p>
+              <p className="text-[#6E7681] text-[11px] leading-tight truncate">{item.detail}</p>
             </div>
             <span
               className="ml-auto w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -84,7 +84,7 @@ export default function HeroAnimated() {
       {/* Ambient glow */}
       <div
         className="absolute -top-32 left-1/3 w-[640px] h-[480px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.14) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse, rgba(59,130,246,0.14) 0%, transparent 70%)' }}
       />
       <div
         className="absolute bottom-0 right-0 w-[420px] h-[380px] rounded-full pointer-events-none"
@@ -101,10 +101,10 @@ export default function HeroAnimated() {
           {/* Left: copy */}
           <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.div variants={fadeUp} className="mb-7">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#6366F1]/30 bg-[#6366F1]/10 text-[#818CF8] text-xs font-medium tracking-wider uppercase">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 text-[#60A5FA] text-xs font-medium tracking-wider uppercase">
                 <span className="relative flex w-1.5 h-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6366F1] opacity-75" />
-                  <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-[#6366F1]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3B82F6] opacity-75" />
+                  <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-[#3B82F6]" />
                 </span>
                 AI Automation Agency
               </span>
@@ -112,7 +112,7 @@ export default function HeroAnimated() {
 
             <motion.h1
               variants={fadeUp}
-              className="font-heading text-[2.75rem] sm:text-6xl lg:text-[4.5rem] font-bold text-[#F5F5F7] leading-[1.02] tracking-tight mb-7"
+              className="font-heading text-[2.75rem] sm:text-6xl lg:text-[4.5rem] font-bold text-[#F0F6FC] leading-[1.02] tracking-tight mb-7"
             >
               Your business,
               <br />
@@ -120,13 +120,13 @@ export default function HeroAnimated() {
               <span className="relative inline-block">
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: 'linear-gradient(120deg, #6366F1 0%, #8B5CF6 45%, #22D3EE 100%)' }}
+                  style={{ backgroundImage: 'linear-gradient(120deg, #3B82F6 0%, #8B5CF6 45%, #F59E0B 100%)' }}
                 >
                   on autopilot.
                 </span>
                 <motion.span
                   className="absolute -bottom-1.5 left-0 h-[3px] rounded-full"
-                  style={{ background: 'linear-gradient(90deg, #6366F1, #22D3EE)' }}
+                  style={{ background: 'linear-gradient(90deg, #3B82F6, #F59E0B)' }}
                   initial={{ width: '0%' }}
                   animate={{ width: '100%' }}
                   transition={{ delay: 1, duration: 0.8, ease: 'easeOut' }}
@@ -136,11 +136,11 @@ export default function HeroAnimated() {
 
             <motion.p
               variants={fadeUp}
-              className="text-[#A1A1AA] text-lg sm:text-xl max-w-xl mb-9 leading-relaxed"
+              className="text-[#8B949E] text-lg sm:text-xl max-w-xl mb-9 leading-relaxed"
             >
               AI voice agents that answer every call. Workflows that run themselves.
               Chatbots that close support tickets while you sleep. Built and deployed
-              in days — not months.
+              in days – not months.
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-14">
@@ -166,10 +166,10 @@ export default function HeroAnimated() {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-x-8 gap-y-3 text-[#71717A] text-sm">
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-x-8 gap-y-3 text-[#6E7681] text-sm">
               {stats.map((s, i) => (
                 <div key={i} className="flex items-center gap-2.5">
-                  <span className="font-mono text-[#F5F5F7] font-semibold text-base">{s.value}</span>
+                  <span className="font-mono text-[#F0F6FC] font-semibold text-base">{s.value}</span>
                   <span>{s.label}</span>
                 </div>
               ))}
@@ -184,9 +184,9 @@ export default function HeroAnimated() {
             className="hidden lg:block"
           >
             <TiltCard maxTilt={9} className="rounded-2xl">
-              <div className="rounded-2xl border border-[#27272A] bg-[#111113]/90 backdrop-blur-sm p-5 shadow-2xl shadow-black/50">
+              <div className="rounded-2xl border border-[#21262D] bg-[#0D1117]/90 backdrop-blur-sm p-5 shadow-2xl shadow-black/50">
                 {/* Window chrome */}
-                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#27272A]">
+                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#21262D]">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
@@ -197,26 +197,26 @@ export default function HeroAnimated() {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                       <span className="relative inline-flex rounded-full w-1.5 h-1.5 bg-emerald-400" />
                     </span>
-                    <span className="text-[#71717A] text-[11px] font-mono">SYSTEM LIVE</span>
+                    <span className="text-[#6E7681] text-[11px] font-mono">SYSTEM LIVE</span>
                   </div>
                 </div>
 
                 {/* Live feed */}
-                <p className="text-[#52525B] text-[10px] font-mono uppercase tracking-widest mb-3">
+                <p className="text-[#6E7681] text-[10px] font-mono uppercase tracking-widest mb-3">
                   Real-time activity
                 </p>
                 <LiveFeed />
 
                 {/* Bottom metrics */}
-                <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-[#27272A]">
+                <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-[#21262D]">
                   {[
                     { v: '100%', l: 'calls answered' },
                     { v: '<2min', l: 'lead response' },
                     { v: '24/7', l: 'uptime' },
                   ].map((m, i) => (
-                    <div key={i} className="text-center rounded-lg bg-[#0D0D0F] border border-[#27272A] py-2.5">
-                      <p className="font-mono text-[#F5F5F7] text-sm font-bold">{m.v}</p>
-                      <p className="text-[#52525B] text-[10px] mt-0.5">{m.l}</p>
+                    <div key={i} className="text-center rounded-lg bg-[#0D0D0F] border border-[#21262D] py-2.5">
+                      <p className="font-mono text-[#F0F6FC] text-sm font-bold">{m.v}</p>
+                      <p className="text-[#6E7681] text-[10px] mt-0.5">{m.l}</p>
                     </div>
                   ))}
                 </div>
@@ -238,7 +238,7 @@ export default function HeroAnimated() {
           transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           className="w-5 h-9 rounded-full border border-[#3F3F46] flex items-start justify-center pt-2"
         >
-          <span className="w-1 h-2 rounded-full bg-[#6366F1]" />
+          <span className="w-1 h-2 rounded-full bg-[#3B82F6]" />
         </motion.div>
       </motion.div>
     </section>

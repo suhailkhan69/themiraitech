@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 
 /**
  * Mouse-tracked 3D tilt wrapper with dynamic glare highlight.
- * Pure CSS transforms driven by pointer position — no dependencies.
+ * Pure CSS transforms driven by pointer position – no dependencies.
  */
 
 interface TiltCardProps {

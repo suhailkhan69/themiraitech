@@ -9,11 +9,11 @@ const values = [
   },
   {
     title: 'We\'re honest about fit.',
-    description: 'If AI automation isn\'t right for your business right now, we\'ll tell you that in the strategy call. We don\'t optimize for closing deals — we optimize for long-term client relationships.',
+    description: 'If AI automation isn\'t right for your business right now, we\'ll tell you that in the strategy call. We don\'t optimize for closing deals – we optimize for long-term client relationships.',
   },
   {
     title: 'We treat your business like ours.',
-    description: 'We only work with a small number of clients at a time so we can go deep. When we build your system, it has our full attention — not split across 50 other accounts.',
+    description: 'We only work with a small number of clients at a time so we can go deep. When we build your system, it has our full attention – not split across 50 other accounts.',
   },
 ];
 
@@ -22,13 +22,13 @@ const differentiators = [
   { label: 'Fixed-price quotes', description: 'No hourly billing surprises. Every project gets a fixed price upfront based on defined scope.' },
   { label: 'Deployment-first approach', description: 'We skip the endless discovery phase. Our process goes from strategy call to live system in as little as 1 week.' },
   { label: 'Post-launch support', description: '30 days of support included with every project. Your system keeps improving after launch, not just at launch.' },
-  { label: 'Small team, direct access', description: 'You work with the same people who build your system — not a PM who relays messages to offshore developers.' },
+  { label: 'Small team, direct access', description: 'You work with the same people who build your system – not a PM who relays messages to offshore developers.' },
   { label: 'Western market focus', description: 'We specifically serve US, UK, Canadian, and Australian businesses. We understand your market, your regulations, and your tools.' },
 ];
 ---
 
 <BaseLayout
-  title="About Mirai — AI Automation Agency | US, UK, Canada, Australia"
+  title="About Mirai – AI Automation Agency | US, UK, Canada, Australia"
   description="Mirai is an AI automation agency that builds production-ready AI systems for SMBs in the US, UK, Canada, and Australia. We ship in days, not months."
 >
   <!-- Hero -->
@@ -54,8 +54,16 @@ const differentiators = [
         <!-- Founder card -->
         <div class="rounded-xl border border-border bg-background p-8">
           <div class="flex items-start gap-6 mb-6">
-            <div class="w-20 h-20 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
-              <span class="text-white font-bold text-2xl font-heading">S</span>
+            <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-border">
+              <img
+                src="/founder.jpg"
+                alt="Suhail Khan, Founder of Mirai"
+                class="w-full h-full object-cover object-top"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+              />
+              <div class="w-full h-full bg-gradient-primary items-center justify-center hidden">
+                <span class="text-white font-bold text-2xl font-heading">S</span>
+              </div>
             </div>
             <div>
               <h2 class="font-heading text-xl font-bold text-text-primary">Suhail Khan</h2>
@@ -71,13 +79,13 @@ const differentiators = [
           </div>
           <div class="space-y-4 text-text-secondary text-sm leading-relaxed">
             <p>
-              I started Mirai after watching the same story play out over and over: small business owners drowning in repetitive work — missed calls, manual follow-ups, copy-paste admin — while the AI tools that could fix all of it sat just out of reach, locked behind enterprise pricing and technical complexity.
+              I started Mirai after watching the same story play out over and over: small business owners drowning in repetitive work – missed calls, manual follow-ups, copy-paste admin – while the AI tools that could fix all of it sat just out of reach, locked behind enterprise pricing and technical complexity.
             </p>
             <p>
-              The technology was never the problem. Implementation was. So I built the agency I wished existed: one that scopes honestly, builds fast, and ships production systems — not pilot programs and strategy decks.
+              The technology was never the problem. Implementation was. So I built the agency I wished existed: one that scopes honestly, builds fast, and ships production systems – not pilot programs and strategy decks.
             </p>
             <p>
-              Mirai is named after the Japanese word for "future" — because I believe every SMB deserves access to the kind of AI systems that were, until recently, only available to companies with 7-figure technology budgets.
+              Mirai is named after the Japanese word for "future" – because I believe every SMB deserves access to the kind of AI systems that were, until recently, only available to companies with 7-figure technology budgets.
             </p>
           </div>
         </div>
@@ -92,7 +100,7 @@ const differentiators = [
               Every week, we talk to business owners who are stuck: they know AI automation would help them grow, but they've been burned by agencies that overpromise and underdeliver, or they've tried off-the-shelf tools that don't fit their workflow.
             </p>
             <p>
-              The specific problem isn't access to the technology — AI has never been more accessible. The problem is implementation. Taking a capable AI model and building it into a production system that actually works inside your specific business, with your specific tools, for your specific customers, requires expertise that most agencies don't have.
+              The specific problem isn't access to the technology – AI has never been more accessible. The problem is implementation. Taking a capable AI model and building it into a production system that actually works inside your specific business, with your specific tools, for your specific customers, requires expertise that most agencies don't have.
             </p>
             <p>
               We built Mirai to be the agency that actually ships. Small team, deep expertise, honest pricing, fast timelines.
@@ -158,14 +166,22 @@ const differentiators = [
       </div>
       <div class="max-w-2xl mx-auto">
         <div class="rounded-2xl border border-border bg-surface p-8 sm:p-10 text-center">
-          <div class="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-5">
-            <span class="text-white font-bold text-2xl">S</span>
+          <div class="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-5 border border-border">
+            <img
+              src="/founder.jpg"
+              alt="Suhail Khan"
+              class="w-full h-full object-cover object-top"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+            />
+            <div class="w-full h-full bg-gradient-primary items-center justify-center hidden rounded-2xl">
+              <span class="text-white font-bold text-2xl">S</span>
+            </div>
           </div>
           <h3 class="font-heading text-xl font-semibold text-text-primary mb-1">Suhail Khan</h3>
           <p class="text-accent-cyan text-sm mb-6">Founder & CEO</p>
           <p class="text-text-secondary text-sm leading-relaxed max-w-lg mx-auto">
             Mirai is deliberately founder-led. When you work with us, you work directly with
-            the person who scopes, designs, and is accountable for your system — backed by a
+            the person who scopes, designs, and is accountable for your system – backed by a
             network of specialist engineers brought in per project. No account managers,
             no handoffs, no telephone game between sales and delivery.
           </p>

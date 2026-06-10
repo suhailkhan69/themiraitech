@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 /**
  * Interactive 3D particle network rendered on canvas.
- * Particles live in 3D space, slowly rotate, and react to the mouse —
+ * Particles live in 3D space, slowly rotate, and react to the mouse –
  * the whole field tilts toward the cursor and nearby particles connect.
  * Zero dependencies, respects prefers-reduced-motion, pauses off-screen.
  */
@@ -139,7 +139,7 @@ export default function ParticleField({ className = '' }: { className?: string }
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECT_DIST) {
             const alpha = (1 - dist / CONNECT_DIST) * 0.14 * Math.min(a.scale, b.scale);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(a.sx, a.sy);
             ctx.lineTo(b.sx, b.sy);
@@ -153,8 +153,8 @@ export default function ParticleField({ className = '' }: { className?: string }
         const { sx, sy, scale } = projected[i];
         const r = Math.max(0.6, 1.8 * scale);
         const alpha = 0.25 + scale * 0.45;
-        // Mix of indigo / violet / cyan
-        const hue = i % 3 === 0 ? '34, 211, 238' : i % 3 === 1 ? '139, 92, 246' : '99, 102, 241';
+        // Mix of blue / violet / amber
+        const hue = i % 3 === 0 ? '59, 130, 246' : i % 3 === 1 ? '139, 92, 246' : '245, 158, 11';
         ctx.fillStyle = `rgba(${hue}, ${alpha})`;
         ctx.beginPath();
         ctx.arc(sx, sy, r, 0, Math.PI * 2);
