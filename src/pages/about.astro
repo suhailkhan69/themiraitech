@@ -71,10 +71,10 @@ const differentiators = [
           </div>
           <div class="space-y-4 text-text-secondary text-sm leading-relaxed">
             <p>
-              [Placeholder — replace with your actual founder story. Describe your background, what led you to start Mirai, and what problem you saw in the market that you built Mirai to solve.]
+              I started Mirai after watching the same story play out over and over: small business owners drowning in repetitive work — missed calls, manual follow-ups, copy-paste admin — while the AI tools that could fix all of it sat just out of reach, locked behind enterprise pricing and technical complexity.
             </p>
             <p>
-              Before Mirai, I spent [X years] [background — e.g., "working in enterprise software at [companies], where I saw firsthand how AI tools that large corporations took for granted were completely inaccessible to small businesses"].
+              The technology was never the problem. Implementation was. So I built the agency I wished existed: one that scopes honestly, builds fast, and ships production systems — not pilot programs and strategy decks.
             </p>
             <p>
               Mirai is named after the Japanese word for "future" — because I believe every SMB deserves access to the kind of AI systems that were, until recently, only available to companies with 7-figure technology budgets.
@@ -156,30 +156,20 @@ const differentiators = [
         <div class="section-label mb-4">Team</div>
         <h2 class="font-heading text-4xl font-bold text-text-primary">The people building your system</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Founder -->
-        <div class="rounded-xl border border-border bg-surface p-6 text-center">
-          <div class="w-16 h-16 rounded-xl bg-gradient-primary flex items-center justify-center mx-auto mb-4">
-            <span class="text-white font-bold text-xl">S</span>
+      <div class="max-w-2xl mx-auto">
+        <div class="rounded-2xl border border-border bg-surface p-8 sm:p-10 text-center">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-5">
+            <span class="text-white font-bold text-2xl">S</span>
           </div>
-          <h3 class="font-heading text-base font-semibold text-text-primary mb-1">Suhail Khan</h3>
-          <p class="text-text-muted text-sm">Founder & CEO</p>
+          <h3 class="font-heading text-xl font-semibold text-text-primary mb-1">Suhail Khan</h3>
+          <p class="text-accent-cyan text-sm mb-6">Founder & CEO</p>
+          <p class="text-text-secondary text-sm leading-relaxed max-w-lg mx-auto">
+            Mirai is deliberately founder-led. When you work with us, you work directly with
+            the person who scopes, designs, and is accountable for your system — backed by a
+            network of specialist engineers brought in per project. No account managers,
+            no handoffs, no telephone game between sales and delivery.
+          </p>
         </div>
-
-        <!-- Placeholder slots -->
-        {[
-          { initial: '?', role: 'AI Engineer', note: '— coming soon' },
-          { initial: '?', role: 'Automation Specialist', note: '— coming soon' },
-          { initial: '?', role: 'Account Manager', note: '— coming soon' },
-        ].map(p => (
-          <div class="rounded-xl border border-dashed border-border bg-surface/50 p-6 text-center opacity-50">
-            <div class="w-16 h-16 rounded-xl border border-dashed border-border flex items-center justify-center mx-auto mb-4">
-              <span class="text-text-muted text-xl">+</span>
-            </div>
-            <h3 class="font-heading text-base font-semibold text-text-muted mb-1">{p.role}</h3>
-            <p class="text-text-muted text-xs">{p.note}</p>
-          </div>
-        ))}
       </div>
     </div>
   </section>

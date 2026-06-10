@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TiltCard from '@/components/effects/TiltCard';
 
 const services = [
   {
@@ -87,17 +88,18 @@ export default function ServicesAnimated() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {services.map((svc, i) => (
-            <motion.a
+            <motion.div
               key={svc.title}
-              href={svc.href}
               custom={i}
               variants={cardVariants}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: '-40px' }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group relative rounded-xl border border-[#27272A] bg-[#111113] p-8 overflow-hidden block"
-              style={{ textDecoration: 'none' }}
+            >
+            <TiltCard
+              href={svc.href}
+              maxTilt={6}
+              className="group relative rounded-xl border border-[#27272A] bg-[#111113] p-8 overflow-hidden block h-full"
             >
               {/* Animated border glow on hover */}
               <motion.div
@@ -127,17 +129,15 @@ export default function ServicesAnimated() {
                 <span className="font-mono text-sm font-semibold" style={{ color: '#22D3EE' }}>
                   {svc.stat}
                 </span>
-                <motion.svg
-                  className="w-4 h-4 text-[#71717A] group-hover:text-[#6366F1]"
+                <svg
+                  className="w-4 h-4 text-[#71717A] group-hover:text-[#6366F1] group-hover:translate-x-1 transition-all duration-200"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                  initial={false}
-                  animate={{ x: 0 }}
-                  whileGroupHover={{ x: 3 }}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </motion.svg>
+                </svg>
               </div>
-            </motion.a>
+            </TiltCard>
+            </motion.div>
           ))}
         </div>
 
