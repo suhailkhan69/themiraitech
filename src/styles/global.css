@@ -1,3 +1,7 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/inter';
+@import '@fontsource/instrument-serif/400-italic.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,6 +52,14 @@
 
   .section-label {
     @apply inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 text-[#3B82F6] text-xs font-medium tracking-wider uppercase;
+  }
+
+  /* Editorial serif accent for emphasized words inside headings */
+  .accent-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   .stat-number {

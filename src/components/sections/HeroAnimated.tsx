@@ -119,7 +119,7 @@ export default function HeroAnimated() {
               running{' '}
               <span className="relative inline-block">
                 <span
-                  className="bg-clip-text text-transparent"
+                  className="accent-serif bg-clip-text text-transparent"
                   style={{ backgroundImage: 'linear-gradient(120deg, #3B82F6 0%, #8B5CF6 45%, #F59E0B 100%)' }}
                 >
                   on autopilot.

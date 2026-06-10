@@ -108,7 +108,7 @@ export default function HowItWorksAnimated() {
             <h2 className="font-heading text-4xl sm:text-5xl font-bold text-[#F0F6FC] mb-6 leading-tight">
               From first call to{' '}
               <span
-                className="bg-clip-text text-transparent"
+                className="accent-serif bg-clip-text text-transparent"
                 style={{ backgroundImage: 'linear-gradient(135deg, #3B82F6, #8B5CF6)' }}
               >
                 live in 1 week.
