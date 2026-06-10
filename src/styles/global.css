@@ -1,3 +1,7 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/inter';
+@import '@fontsource/instrument-serif/400-italic.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,14 +22,14 @@
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.3);
-    color: #F5F5F7;
+    background-color: rgba(59, 130, 246, 0.3);
+    color: #F0F6FC;
   }
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: #0A0A0B; }
-  ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #3F3F46; }
+  ::-webkit-scrollbar-track { background: #070A10; }
+  ::-webkit-scrollbar-thumb { background: #21262D; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #30363D; }
 }
 
 @layer components {
@@ -39,7 +43,7 @@
 
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm text-white no-underline transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98];
-    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    background: linear-gradient(135deg, #1D4ED8, #3B82F6);
   }
 
   .btn-secondary {
@@ -47,7 +51,15 @@
   }
 
   .section-label {
-    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-indigo/30 bg-accent-indigo/10 text-accent-indigo text-xs font-medium tracking-wider uppercase;
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#3B82F6]/30 bg-[#3B82F6]/10 text-[#3B82F6] text-xs font-medium tracking-wider uppercase;
+  }
+
+  /* Editorial serif accent for emphasized words inside headings */
+  .accent-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   .stat-number {

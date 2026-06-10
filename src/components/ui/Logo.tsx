@@ -3,7 +3,7 @@ import React from 'react';
 interface Props {
   height?: number;
   className?: string;
-  // showWordmark kept for API compat but ignored — logo already includes wordmark
+  // showWordmark kept for API compat but ignored – logo already includes wordmark
   showWordmark?: boolean;
 }
 

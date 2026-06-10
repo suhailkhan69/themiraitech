@@ -5,7 +5,7 @@ import type { APIContext } from 'astro';
 export async function GET(context: APIContext) {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return rss({
-    title: 'Mirai Blog — AI Automation for SMBs',
+    title: 'Mirai Blog – AI Automation for SMBs',
     description: 'Practical guides, case studies, and tutorials on AI automation for Western SMBs.',
     site: context.site!,
     items: posts
